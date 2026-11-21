@@ -38,28 +38,27 @@ void main() {
       expect(find.text('0 of 7'), findsNWidgets(2));
     });
 
-    testWidgets('tapping a card reads its name aloud', (tester) async {
+    testWidgets('tapping a card plays its note', (tester) async {
       await pumpApp(tester, environment);
 
       await tester.tap(find.text('Brush teeth'));
       await tester.pump();
 
-      expect(environment.speech.spoken, ['Brush teeth']);
+      // Brush teeth is the fourth built-in card.
+      expect(environment.sounds.played, ['wood 4']);
       expect(appState(tester).totalStars, 0);
     });
 
-    testWidgets('stays silent when reading aloud is switched off', (
-      tester,
-    ) async {
+    testWidgets('stays silent when sounds are switched off', (tester) async {
       await pumpApp(tester, environment);
       ProviderScope.containerOf(tester.element(find.byType(LittleStepsApp)))
           .read(appControllerProvider.notifier)
-          .setSpeechEnabled(false);
+          .setSoundEnabled(false);
 
       await tester.tap(find.text('Brush teeth'));
       await tester.pump();
 
-      expect(environment.speech.spoken, isEmpty);
+      expect(environment.sounds.played, isEmpty);
     });
 
     testWidgets('tapping a star marks the task done, tapping again undoes it', (
@@ -117,10 +116,7 @@ void main() {
         find.text('A new friend joined your sticker book!'),
         findsOneWidget,
       );
-      expect(
-        environment.speech.spoken.last,
-        'Great job! You finished everything!',
-      );
+      expect(environment.sounds.played.last, 'celebrate');
 
       await tester.tap(find.text('Yay!'));
       await tester.pumpAndSettle();

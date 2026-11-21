@@ -18,7 +18,6 @@
   "progressLabel": "{done}/{total}",
   "childEmptyRoutine": "Chưa có việc nào. Nhờ ba mẹ thêm nhé!",
   "childNoRoutines": "Chưa có lịch trình. Nhờ ba mẹ tạo nhé!",
-  "semanticHear": "Nghe {name}",
   "semanticMarkDone": "Đánh dấu đã xong {name}",
   "semanticMarkNotDone": "Đánh dấu chưa xong {name}",
 
@@ -75,7 +74,7 @@
 
   "settingsLanguage": "Ngôn ngữ",
   "languageSystem": "Theo máy",
-  "settingsSpeech": "Đọc tên thẻ thành tiếng",
+  "settingsSound": "Phát âm thanh",
   "settingsResetToday": "Đặt lại tiến độ hôm nay",
   "settingsResetConfirm": "Xóa mọi ngôi sao đã nhận hôm nay?",
   "settingsResetDone": "Đã đặt lại tiến độ hôm nay.",

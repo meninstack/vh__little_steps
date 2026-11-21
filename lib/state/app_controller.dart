@@ -353,8 +353,8 @@ class AppController extends Notifier<AppData> {
     _commit(state.copyWith(localeCode: () => localeCode));
   }
 
-  void setSpeechEnabled(bool enabled) {
-    _commit(state.copyWith(speechEnabled: enabled));
+  void setSoundEnabled(bool enabled) {
+    _commit(state.copyWith(soundEnabled: enabled));
   }
 
   /// Clears today's stars so the routines can be run again. Stickers

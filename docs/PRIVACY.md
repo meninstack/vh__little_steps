@@ -15,8 +15,6 @@ Từng bước nhỏ không thu thập, truyền đi hay chia sẻ bất kỳ d�
   thẻ sẽ xóa ảnh.
 - **Máy ảnh và thư viện ảnh** chỉ được dùng khi người lớn chọn "Chụp ảnh"
   hoặc "Chọn ảnh" lúc tạo thẻ.
-- **Đọc thành tiếng** dùng bộ đọc văn bản có sẵn trên thiết bị. Cách bộ đọc
-  đó xử lý văn bản tuân theo chính sách của nhà cung cấp nó.
 - **Lịch trình, tiến độ và nhãn dán** được lưu trên thiết bị và bị xóa khi
   gỡ ứng dụng.
 
@@ -39,8 +37,6 @@ Little Steps does not collect, transmit or share any personal data.
   not uploaded anywhere. Deleting the card deletes the photo.
 - **Camera and photo library** are used only when a grown-up chooses "Take
   photo" or "Choose photo" while making a card.
-- **Reading aloud** uses the text-to-speech engine already on the device.
-  How that engine handles text is governed by its own provider's policy.
 - **Routines, progress and stickers** are stored on the device and are
   removed when the app is uninstalled.
 

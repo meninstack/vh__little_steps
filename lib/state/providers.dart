@@ -7,7 +7,7 @@ import '../core/clock.dart';
 import '../core/id_generator.dart';
 import '../data/app_repository.dart';
 import '../data/image_store.dart';
-import '../services/speech_service.dart';
+import '../services/sound_service.dart';
 
 /// Opened before the first frame and supplied by `main()`.
 final appRepositoryProvider = Provider<AppRepository>(
@@ -16,8 +16,8 @@ final appRepositoryProvider = Provider<AppRepository>(
 
 final imageStoreProvider = Provider<ImageStore>((ref) => createImageStore());
 
-final speechServiceProvider = Provider<SpeechService>(
-  (ref) => DeviceSpeechService(),
+final soundServiceProvider = Provider<SoundService>(
+  (ref) => AssetSoundService(),
 );
 
 final clockProvider = Provider<Clock>((ref) => DateTime.now);

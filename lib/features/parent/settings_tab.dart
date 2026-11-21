@@ -43,8 +43,8 @@ class SettingsTab extends ConsumerWidget {
     final localeCode = ref.watch(
       appControllerProvider.select((data) => data.localeCode),
     );
-    final speechEnabled = ref.watch(
-      appControllerProvider.select((data) => data.speechEnabled),
+    final soundEnabled = ref.watch(
+      appControllerProvider.select((data) => data.soundEnabled),
     );
 
     return ListView(
@@ -87,10 +87,10 @@ class SettingsTab extends ConsumerWidget {
         _Panel(
           children: [
             SwitchListTile(
-              title: Text(l10n.settingsSpeech),
+              title: Text(l10n.settingsSound),
               secondary: const Icon(Icons.volume_up_rounded),
-              value: speechEnabled,
-              onChanged: controller.setSpeechEnabled,
+              value: soundEnabled,
+              onChanged: controller.setSoundEnabled,
             ),
             const Divider(height: 1, indent: 16, endIndent: 16),
             ListTile(

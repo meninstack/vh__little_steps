@@ -8,7 +8,7 @@ import 'package:little_steps/core/id_generator.dart';
 import 'package:little_steps/data/app_repository.dart';
 import 'package:little_steps/data/image_store.dart';
 import 'package:little_steps/data/models.dart';
-import 'package:little_steps/services/speech_service.dart';
+import 'package:little_steps/services/sound_service.dart';
 import 'package:little_steps/state/providers.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -36,7 +36,7 @@ class TestEnvironment {
       now = now ?? DateTime(2026, 11, 14, 7, 30);
 
   final MemoryAppRepository repository;
-  final SilentSpeechService speech = SilentSpeechService();
+  final SilentSoundService sounds = SilentSoundService();
   final MemoryImageStore images = MemoryImageStore();
 
   /// Change this to move the app to another time or day.
@@ -44,7 +44,7 @@ class TestEnvironment {
 
   List<Override> get overrides => [
     appRepositoryProvider.overrideWithValue(repository),
-    speechServiceProvider.overrideWithValue(speech),
+    soundServiceProvider.overrideWithValue(sounds),
     imageStoreProvider.overrideWithValue(images),
     clockProvider.overrideWithValue(() => now),
     randomProvider.overrideWithValue(Random(1)),

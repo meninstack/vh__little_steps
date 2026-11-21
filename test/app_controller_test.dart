@@ -371,7 +371,7 @@ void main() {
       controller().toggleItem(routine.id, routine.items.first.id);
       controller().renameRoutine(routine.id, 'Sáng');
       controller().setLocale('vi');
-      controller().setSpeechEnabled(false);
+      controller().setSoundEnabled(false);
       await controller().addCustomCard(
         label: 'Cho mèo ăn',
         imageBytes: Uint8List.fromList([9]),
@@ -386,7 +386,7 @@ void main() {
       expect(restored.routines.first.name, 'Sáng');
       expect(restored.isDone(routine.id, routine.items.first.id), isTrue);
       expect(restored.localeCode, 'vi');
-      expect(restored.speechEnabled, isFalse);
+      expect(restored.soundEnabled, isFalse);
       expect(restored.customCards.single.label, 'Cho mèo ăn');
     });
   });

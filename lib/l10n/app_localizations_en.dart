@@ -65,11 +65,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get childNoRoutines => 'No routines yet. Ask a grown-up to make one!';
 
   @override
-  String semanticHear(String name) {
-    return 'Hear $name';
-  }
-
-  @override
   String semanticMarkDone(String name) {
     return 'Mark $name as done';
   }
@@ -234,7 +229,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get languageSystem => 'System';
 
   @override
-  String get settingsSpeech => 'Read card names aloud';
+  String get settingsSound => 'Play sounds';
 
   @override
   String get settingsResetToday => 'Reset today\'s progress';

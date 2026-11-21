@@ -64,11 +64,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String get childNoRoutines => 'Chưa có lịch trình. Nhờ ba mẹ tạo nhé!';
 
   @override
-  String semanticHear(String name) {
-    return 'Nghe $name';
-  }
-
-  @override
   String semanticMarkDone(String name) {
     return 'Đánh dấu đã xong $name';
   }
@@ -233,7 +228,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get languageSystem => 'Theo máy';
 
   @override
-  String get settingsSpeech => 'Đọc tên thẻ thành tiếng';
+  String get settingsSound => 'Phát âm thanh';
 
   @override
   String get settingsResetToday => 'Đặt lại tiến độ hôm nay';

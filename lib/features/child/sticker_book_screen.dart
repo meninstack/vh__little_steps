@@ -5,6 +5,7 @@ import 'package:material_ui/material_ui.dart';
 import '../../core/theme.dart';
 import '../../data/card_catalog.dart';
 import '../../l10n/app_localizations.dart';
+import '../../services/sound_service.dart';
 import '../../state/app_controller.dart';
 import '../../state/providers.dart';
 
@@ -68,10 +69,13 @@ class StickerBookScreen extends ConsumerWidget {
                     borderRadius: BorderRadius.circular(24),
                     clipBehavior: Clip.antiAlias,
                     child: InkWell(
-                      onTap: has && data.speechEnabled
+                      onTap: has && data.soundEnabled
                           ? () => ref
-                                .read(speechServiceProvider)
-                                .speak(name, languageCode: languageCode)
+                                .read(soundServiceProvider)
+                                .playNote(
+                                  NoteSet.bell,
+                                  noteNumberForSticker(index),
+                                )
                           : null,
                       child: Padding(
                         padding: const EdgeInsets.all(12),

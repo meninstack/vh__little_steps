@@ -182,12 +182,6 @@ abstract class AppLocalizations {
   /// **'No routines yet. Ask a grown-up to make one!'**
   String get childNoRoutines;
 
-  /// No description provided for @semanticHear.
-  ///
-  /// In en, this message translates to:
-  /// **'Hear {name}'**
-  String semanticHear(String name);
-
   /// No description provided for @semanticMarkDone.
   ///
   /// In en, this message translates to:
@@ -476,11 +470,11 @@ abstract class AppLocalizations {
   /// **'System'**
   String get languageSystem;
 
-  /// No description provided for @settingsSpeech.
+  /// No description provided for @settingsSound.
   ///
   /// In en, this message translates to:
-  /// **'Read card names aloud'**
-  String get settingsSpeech;
+  /// **'Play sounds'**
+  String get settingsSound;
 
   /// No description provided for @settingsResetToday.
   ///

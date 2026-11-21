@@ -7,9 +7,9 @@ import '../../widgets/card_art.dart';
 
 /// One task on the child's board.
 ///
-/// Tapping the card reads its name aloud; tapping the star marks it done.
-/// The two actions are separate targets so that hearing a task again never
-/// completes it by accident.
+/// Tapping the card plays its note; tapping the star marks it done. The two
+/// actions are separate targets so that playing with a card never completes
+/// the task by accident.
 class TaskTile extends StatelessWidget {
   const TaskTile({
     super.key,
@@ -17,7 +17,7 @@ class TaskTile extends StatelessWidget {
     required this.order,
     required this.done,
     required this.compact,
-    required this.onSpeak,
+    required this.onPlay,
     required this.onToggle,
   });
 
@@ -29,7 +29,7 @@ class TaskTile extends StatelessWidget {
 
   /// A wide row for phones; otherwise a tall tile for the tablet grid.
   final bool compact;
-  final VoidCallback onSpeak;
+  final VoidCallback onPlay;
   final VoidCallback onToggle;
 
   @override
@@ -55,13 +55,13 @@ class TaskTile extends StatelessWidget {
       ),
     );
 
-    Widget speakArea(Widget body) => Semantics(
+    Widget playArea(Widget body) => Semantics(
       button: true,
-      label: l10n.semanticHear(card.label),
+      label: card.label,
       excludeSemantics: true,
       child: InkWell(
         borderRadius: BorderRadius.circular(25),
-        onTap: onSpeak,
+        onTap: onPlay,
         child: body,
       ),
     );
@@ -73,7 +73,7 @@ class TaskTile extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              child: speakArea(
+              child: playArea(
                 _CompactBody(card: card, order: order, label: label),
               ),
             ),
@@ -93,7 +93,7 @@ class TaskTile extends StatelessWidget {
           child: _TileSurface(
             card: card,
             done: done,
-            child: speakArea(_TallBody(card: card, order: order, label: label)),
+            child: playArea(_TallBody(card: card, order: order, label: label)),
           ),
         ),
         Align(alignment: Alignment.bottomCenter, child: star),
