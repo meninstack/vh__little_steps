@@ -106,7 +106,8 @@ flutter test                # 63 unit test và widget test
 
 CI (`.github/workflows/ci.yml`) kiểm tra định dạng mã, chạy analyze, chạy
 test và build một APK bản release, đính kèm vào lần chạy dưới dạng artifact
-tải về được.
+tải về được. CI cũng build iOS ở dạng không ký và kiểm tra `pubspec.lock`
+còn khớp với `pubspec.yaml`.
 
 ## Test
 
@@ -123,8 +124,9 @@ phát đúng một nốt cố định, và mọi file âm thanh đều có trong
 ## Tình trạng
 
 Đây là bản MVP đầu tiên. Bản web đã được chạy thử từ đầu đến cuối trên
-Chrome. APK Android do CI build nhưng chưa được chạy trên thiết bị thật, và
-project iOS chưa được build.
+Chrome. Một bản APK do CI build đã được cài và mở trên điện thoại Android
+thật. Project iOS được CI build ở dạng không ký, nhưng chưa chạy trên iPhone
+hay iPad thật.
 
 Chưa có trong bản này: đồng hồ đếm ngược cho từng việc, nhắc nhở, hồ sơ cho
 nhiều trẻ, và lịch sử theo tuần.

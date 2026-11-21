@@ -18,7 +18,7 @@ App Store Connect lúc nộp.
 | Thiết bị | điện thoại, tablet | iPhone, iPad |
 
 Chính sách quyền riêng tư đã có URL công khai, dùng được cho cả hai store:
-<https://github.com/meninstack/test-claude-cloud/blob/main/docs/PRIVACY.md>.
+<https://github.com/meninstack/vh__little_steps/blob/main/docs/PRIVACY.md>.
 Nếu đổi tên repo, GitHub tự chuyển hướng URL cũ, nhưng nên cập nhật lại URL
 trên hai store.
 
@@ -69,10 +69,10 @@ trên hai store.
    trị:
 
    ```powershell
-   [Convert]::ToBase64String([IO.File]::ReadAllBytes("upload-keystore.jks")) | gh secret set ANDROID_KEYSTORE_BASE64 -R meninstack/test-claude-cloud
-   gh secret set ANDROID_KEYSTORE_PASSWORD -R meninstack/test-claude-cloud
-   gh secret set ANDROID_KEY_ALIAS -R meninstack/test-claude-cloud
-   gh secret set ANDROID_KEY_PASSWORD -R meninstack/test-claude-cloud
+   [Convert]::ToBase64String([IO.File]::ReadAllBytes("upload-keystore.jks")) | gh secret set ANDROID_KEYSTORE_BASE64 -R meninstack/vh__little_steps
+   gh secret set ANDROID_KEYSTORE_PASSWORD -R meninstack/vh__little_steps
+   gh secret set ANDROID_KEY_ALIAS -R meninstack/vh__little_steps
+   gh secret set ANDROID_KEY_PASSWORD -R meninstack/vh__little_steps
    ```
 
 4. Tạo ứng dụng trên Play Console, bật Play App Signing, tải
