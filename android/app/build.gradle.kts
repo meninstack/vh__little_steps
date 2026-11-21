@@ -4,6 +4,17 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+// The upload key for store builds lives outside the repository: locally in
+// android/key.properties, in CI written from repository secrets. Without it,
+// release builds are signed with the debug key, so they still install for
+// testing but cannot be uploaded to a store. See docs/RELEASE.md.
+val keystoreProperties =
+    java.util.Properties().apply {
+        val file = rootProject.file("key.properties")
+        if (file.exists()) file.inputStream().use { load(it) }
+    }
+val hasUploadKey = keystoreProperties.getProperty("storeFile") != null
+
 android {
     namespace = "vn.vinh_hoa.little_steps"
     compileSdk = flutter.compileSdkVersion
@@ -29,11 +40,20 @@ android {
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        if (hasUploadKey) {
+            create("release") {
+                storeFile = rootProject.file(keystoreProperties.getProperty("storeFile"))
+                storePassword = keystoreProperties.getProperty("storePassword")
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName(if (hasUploadKey) "release" else "debug")
         }
     }
 }
