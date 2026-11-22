@@ -22,6 +22,12 @@ final soundServiceProvider = Provider<SoundService>(
 
 final clockProvider = Provider<Clock>((ref) => DateTime.now);
 
+/// The language a new installation starts in, or null to follow the device.
+///
+/// The app is made for Vietnamese families first, so it opens in Vietnamese
+/// until someone chooses another language.
+final defaultLocaleCodeProvider = Provider<String?>((ref) => 'vi');
+
 final randomProvider = Provider<Random>((ref) => Random());
 
 final idGeneratorProvider = Provider<IdGenerator>((ref) => IdGenerator());

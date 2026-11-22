@@ -42,7 +42,8 @@ không tài khoản, không thu thập dữ liệu.
   ở nhà và giờ ngủ, ra ngoài, cư xử.
 - Tự tạo thẻ từ một tấm ảnh và một cái tên.
 - Kéo để đổi thứ tự các việc.
-- Tiếng Việt và tiếng Anh, đổi được ngay trong ứng dụng.
+- Tiếng Việt và tiếng Anh, đổi được ngay trong ứng dụng. Máy mới cài mở ra
+  bằng tiếng Việt.
 - Bật hoặc tắt âm thanh trong phần cài đặt.
 
 ## Những quyết định đáng chú ý
@@ -110,7 +111,7 @@ lib/
 flutter pub get
 flutter run                 # điện thoại, tablet hoặc emulator đang kết nối
 flutter run -d chrome       # trong trình duyệt
-flutter test                # 79 unit test và widget test
+flutter test                # 82 unit test và widget test
 ```
 
 CI (`.github/workflows/ci.yml`) kiểm tra định dạng mã, chạy analyze, chạy

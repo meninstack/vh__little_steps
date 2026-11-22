@@ -32,13 +32,17 @@ class MemoryAppRepository implements AppRepository {
 
 /// The fakes behind one test, plus the overrides that install them.
 class TestEnvironment {
-  TestEnvironment({AppData? stored, DateTime? now})
+  TestEnvironment({AppData? stored, DateTime? now, this.defaultLocaleCode})
     : repository = MemoryAppRepository(stored),
       now = now ?? DateTime(2026, 11, 14, 7, 30);
 
   final MemoryAppRepository repository;
   final SilentSoundService sounds = SilentSoundService();
   final MemoryImageStore images = MemoryImageStore();
+
+  /// The language of a new installation. Null, unlike in the real app, so
+  /// that tests follow the test device and read in English.
+  final String? defaultLocaleCode;
 
   /// Change this to move the app to another time or day.
   DateTime now;
@@ -48,6 +52,7 @@ class TestEnvironment {
     soundServiceProvider.overrideWithValue(sounds),
     imageStoreProvider.overrideWithValue(images),
     clockProvider.overrideWithValue(() => now),
+    defaultLocaleCodeProvider.overrideWithValue(defaultLocaleCode),
     randomProvider.overrideWithValue(Random(1)),
     idGeneratorProvider.overrideWithValue(IdGenerator(Random(2))),
   ];

@@ -52,6 +52,7 @@ class AppController extends Notifier<AppData> {
         _routineFrom(routineTemplatesByKey[key]!),
     ],
     progress: DayProgress(date: today),
+    localeCode: ref.read(defaultLocaleCodeProvider),
     onboardingDone: false,
   );
 

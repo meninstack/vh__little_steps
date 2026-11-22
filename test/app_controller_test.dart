@@ -7,6 +7,7 @@ import 'package:little_steps/data/card_catalog.dart';
 import 'package:little_steps/data/models.dart';
 import 'package:little_steps/data/routine_templates.dart';
 import 'package:little_steps/state/app_controller.dart';
+import 'package:little_steps/state/providers.dart';
 
 import 'support/harness.dart';
 
@@ -17,8 +18,11 @@ void main() {
   AppData state() => container.read(appControllerProvider);
   AppController controller() => container.read(appControllerProvider.notifier);
 
-  void start({AppData? stored}) {
-    environment = TestEnvironment(stored: stored);
+  void start({AppData? stored, String? defaultLocaleCode}) {
+    environment = TestEnvironment(
+      stored: stored,
+      defaultLocaleCode: defaultLocaleCode,
+    );
     container = ProviderContainer.test(overrides: environment.overrides);
   }
 
@@ -40,6 +44,18 @@ void main() {
       expect(state().progress.date, '2026-11-14');
       expect(state().totalStars, 0);
       expect(state().stickers, isEmpty);
+    });
+
+    test('the app opens in Vietnamese unless told otherwise', () {
+      final container = ProviderContainer.test();
+
+      expect(container.read(defaultLocaleCodeProvider), 'vi');
+    });
+
+    test('a new installation starts in the default language', () {
+      start(defaultLocaleCode: 'vi');
+
+      expect(state().localeCode, 'vi');
     });
 
     test('opens on the welcome screen until it is finished', () {

@@ -52,6 +52,20 @@ void main() {
       expect(find.text('After school'), findsOneWidget);
     });
 
+    testWidgets('a new installation opens in Vietnamese', (tester) async {
+      environment = TestEnvironment(defaultLocaleCode: 'vi');
+
+      await pumpApp(tester, environment, finishWelcome: false);
+
+      expect(find.text('Chọn lịch trình để bắt đầu'), findsOneWidget);
+      expect(find.text('Buổi sáng'), findsOneWidget);
+
+      await tester.tap(find.byKey(WelcomeScreen.startButtonKey));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Thức dậy'), findsOneWidget);
+    });
+
     testWidgets('the start button waits until a routine is chosen', (
       tester,
     ) async {
