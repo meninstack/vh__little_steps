@@ -1,7 +1,7 @@
 import 'card_catalog.dart';
 import 'models.dart';
 
-/// What the UI needs to draw and speak a card, whichever kind it is.
+/// What the UI needs to draw and name a card, whichever kind it is.
 class ResolvedCard {
   const ResolvedCard({
     required this.cardId,

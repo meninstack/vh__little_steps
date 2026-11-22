@@ -2,8 +2,8 @@
 
 Bảng lịch trình hằng ngày bằng hình ảnh cho trẻ nhỏ, dùng trên điện thoại và
 tablet. Ba mẹ xếp các thẻ hình ("Thức dậy", "Đánh răng", "Soạn cặp"); trẻ
-nghe tên từng việc, chạm vào ngôi sao khi làm xong, và nhận một nhãn dán con
-vật khi hoàn thành cả lịch trình.
+chạm vào thẻ để nghe một nốt nhạc, chạm vào ngôi sao khi làm xong, và nhận
+một nhãn dán con vật khi hoàn thành cả lịch trình.
 
 Miễn phí, chạy offline, không quảng cáo, không mua hàng trong ứng dụng,
 không tài khoản, không thu thập dữ liệu.
@@ -19,36 +19,47 @@ không tài khoản, không thu thập dữ liệu.
 **Dành cho trẻ**
 
 - Mỗi việc là một thẻ lớn, xếp theo thứ tự, có số, hình và tên.
-- Chạm vào thẻ để nghe tên việc. Chạm vào ngôi sao của thẻ để đánh dấu đã
-  xong.
+- Chạm vào thẻ để nghe nốt nhạc riêng của thẻ đó, hình trên thẻ nảy lên
+  theo. Chạm vào ngôi sao của thẻ để đánh dấu đã xong.
 - Thanh tiến độ đầy dần theo số sao trẻ nhận được.
-- Làm xong một lịch trình, trẻ được chúc mừng và có thêm một bạn thú mới
-  trong sổ nhãn dán (có 24 bạn để sưu tầm).
+- Làm xong một lịch trình, trẻ được chúc mừng bằng một hồi chuông và có thêm
+  một bạn thú mới trong sổ nhãn dán (có 48 bạn để sưu tầm, chia thành năm
+  bộ: nhà và nông trại, rừng, thú hoang dã, biển, nhỏ bé và kỳ diệu). Chạm
+  vào bạn thú
+  đã có để nghe nốt chuông của bạn ấy.
 - Mỗi sáng, bảng việc bắt đầu lại từ đầu.
 
 **Dành cho ba mẹ** (phải trả lời một phép nhân mới vào được)
 
-- Nhiều lịch trình, mỗi lịch trình có tên và biểu tượng riêng. Buổi sáng và
-  Buổi tối có sẵn từ đầu.
-- 39 thẻ có sẵn, chia thành bốn nhóm: buổi sáng, đi học, ăn uống và vệ sinh,
-  ở nhà và giờ ngủ.
+- Lần mở đầu tiên có màn hình chào: chọn ngôn ngữ và các lịch trình mẫu để
+  bắt đầu.
+- Nhiều lịch trình, mỗi lịch trình có tên và biểu tượng riêng (16 biểu
+  tượng). Buổi sáng và Buổi tối có sẵn từ đầu.
+- Chín lịch trình mẫu để thêm nhanh rồi sửa lại theo ý: buổi sáng, buổi tối,
+  đi học về, trước khi ra ngoài, giờ ăn, giờ đi ngủ, cuối tuần, việc nhà, đi
+  khám bác sĩ.
+- 88 thẻ có sẵn, chia thành sáu nhóm: buổi sáng, đi học, ăn uống và vệ sinh,
+  ở nhà và giờ ngủ, ra ngoài, cư xử.
 - Tự tạo thẻ từ một tấm ảnh và một cái tên.
 - Kéo để đổi thứ tự các việc.
-- Tiếng Việt và tiếng Anh, đổi được ngay trong ứng dụng. Tên thẻ được đọc
-  thành tiếng bằng ngôn ngữ ứng dụng đang dùng.
+- Tiếng Việt và tiếng Anh, đổi được ngay trong ứng dụng. Máy mới cài mở ra
+  bằng tiếng Việt.
+- Bật hoặc tắt âm thanh trong phần cài đặt.
 
 ## Những quyết định đáng chú ý
 
-- **Nghe tên việc và đánh dấu xong là hai vùng chạm riêng.** Thẻ thì đọc
-  tên, ngôi sao thì đánh dấu xong. Trẻ muốn nghe lại "Đánh răng" sẽ không lỡ
-  tay đánh dấu việc đó là đã xong.
+- **Nghe nốt nhạc và đánh dấu xong là hai vùng chạm riêng.** Thẻ thì phát
+  nốt, ngôi sao thì đánh dấu xong. Trẻ chạm chơi với thẻ "Đánh răng" sẽ không
+  lỡ tay đánh dấu việc đó là đã xong.
 - **Mỗi lịch trình chỉ cho một nhãn dán mỗi ngày.** Bỏ đánh dấu rồi đánh dấu
   lại việc cuối cùng không sinh thêm nhãn dán, và không có cách nào nhận
   nhãn dán mà không làm hết lịch trình.
-- **Không dùng âm thanh thu sẵn.** Tên thẻ được đọc bằng bộ text-to-speech
-  có sẵn trên thiết bị, nhờ đó ứng dụng nhẹ và ngôn ngữ nào cũng có giọng
-  đọc mà không tốn gì thêm. Nếu thiết bị chưa có giọng đọc cho ngôn ngữ của
-  ứng dụng, hãy cài thêm trong phần cài đặt text-to-speech của hệ thống.
+- **Âm thanh là nốt nhạc, không phải giọng đọc.** Giọng text-to-speech của
+  thiết bị đọc tiếng Việt không đạt, còn thẻ ba mẹ tự tạo thì không thể có
+  giọng thu sẵn. Vì vậy mỗi thẻ phát một nốt đàn gỗ cố định của riêng nó,
+  mỗi bạn thú phát một nốt chuông, và làm xong lịch trình thì có một hồi
+  chuông. Các nốt thuộc cùng một thang âm nên chạm theo thứ tự nào nghe cũng
+  êm tai, và không phụ thuộc ngôn ngữ.
 - **Không có gì rời khỏi thiết bị.** Không backend, không analytics SDK,
   không ad SDK. Ảnh của thẻ tự tạo được lưu trong thư mục riêng của ứng
   dụng. Xem [chính sách quyền riêng tư](docs/PRIVACY.md).
@@ -68,27 +79,31 @@ lib/
   data/
     models.dart           Routine, RoutineItem, CustomCard, DayProgress, AppData
     card_catalog.dart     thẻ có sẵn, biểu tượng lịch trình, nhãn dán
+    routine_templates.dart  lịch trình mẫu
     app_repository.dart   AppData <-> một tài liệu JSON trong key-value storage
     image_store*.dart     ảnh: file trên điện thoại, bộ nhớ trình duyệt trên web
   state/
     app_controller.dart   mọi quy tắc của ứng dụng, gói trong một Riverpod Notifier
-    providers.dart        đồng hồ, số ngẫu nhiên, lưu trữ, giọng đọc (thay thế được)
-  services/               text-to-speech, chọn ảnh
+    providers.dart        đồng hồ, số ngẫu nhiên, lưu trữ, âm thanh (thay thế được)
+  services/               phát âm thanh, chọn ảnh
+  features/welcome/       màn hình chào lần đầu
   features/child/         bảng việc, ô việc, chúc mừng, sổ nhãn dán
   features/parent/        cổng ba mẹ, lịch trình, sửa lịch trình, chọn thẻ, thẻ tự tạo, cài đặt
   l10n/                   app_en.arb, app_vi.arb (+ mã sinh tự động)
 ```
 
 - **State**: `flutter_riverpod`. `AppController` giữ một `AppData` bất biến
-  và lưu lại sau mỗi thay đổi. Thời gian, số ngẫu nhiên, lưu trữ và giọng
-  đọc đều là provider, nên test thay chúng bằng bản giả được.
+  và lưu lại sau mỗi thay đổi. Thời gian, số ngẫu nhiên, lưu trữ và âm
+  thanh đều là provider, nên test thay chúng bằng bản giả được.
 - **Lưu trữ**: `shared_preferences` giữ một tài liệu JSON nhỏ (các lịch
   trình, tên thẻ, tiến độ của một ngày). Ảnh là các file riêng.
 - **Hình vẽ**: SVG của [Twemoji](https://github.com/jdecked/twemoji), hiển
   thị bằng `flutter_svg`. `tool/asset_map.json` cho biết file nào ứng với
-  emoji nào.
+  emoji nào, và `tool/fetch_twemoji.py` tải hình cho các id mới.
 - **Icon**: do `tool/make_icon.py` vẽ; script này cũng xuất mọi kích thước
   icon cho Android, iOS và web.
+- **Âm thanh**: do `tool/make_notes.py` tổng hợp (hai bộ 8 nốt và một hồi
+  chuông trong `assets/sounds/`), phát bằng `audioplayers`.
 
 ## Chạy ứng dụng
 
@@ -96,12 +111,13 @@ lib/
 flutter pub get
 flutter run                 # điện thoại, tablet hoặc emulator đang kết nối
 flutter run -d chrome       # trong trình duyệt
-flutter test                # 58 unit test và widget test
+flutter test                # 82 unit test và widget test
 ```
 
 CI (`.github/workflows/ci.yml`) kiểm tra định dạng mã, chạy analyze, chạy
 test và build một APK bản release, đính kèm vào lần chạy dưới dạng artifact
-tải về được.
+tải về được. CI cũng build iOS ở dạng không ký và kiểm tra `pubspec.lock`
+còn khớp với `pubspec.yaml`.
 
 ## Test
 
@@ -112,20 +128,23 @@ màn hình chúc mừng, cổng ba mẹ, màn hình sửa lịch trình (cả k�
 tự), chọn thẻ, tạo thẻ từ ảnh, đổi ngôn ngữ, và bố cục trên năm kích thước
 màn hình, từ điện thoại 320 px tới tablet nằm ngang.
 `test/app_repository_test.dart` kiểm tra việc lưu trữ, kể cả khi dữ liệu bị
-hỏng.
+hỏng. `test/sound_service_test.dart` kiểm tra mỗi thẻ và mỗi bạn thú luôn
+phát đúng một nốt cố định, và mọi file âm thanh đều có trong ứng dụng.
+`test/card_catalog_test.dart` kiểm tra danh mục: id không trùng, thẻ, biểu
+tượng và bạn thú nào cũng có hình, lịch trình mẫu chỉ dùng thẻ có thật.
 
 ## Tình trạng
 
 Đây là bản MVP đầu tiên. Bản web đã được chạy thử từ đầu đến cuối trên
-Chrome. APK Android do CI build nhưng chưa được chạy trên thiết bị thật, và
-project iOS chưa được build.
+Chrome. Một bản APK do CI build đã được cài và mở trên điện thoại Android
+thật. Project iOS được CI build ở dạng không ký, nhưng chưa chạy trên iPhone
+hay iPad thật.
 
-Chưa có trong bản này: thu âm giọng nói cho thẻ tự tạo, đồng hồ đếm ngược
-cho từng việc, nhắc nhở, hồ sơ cho nhiều trẻ, và lịch sử theo tuần.
+Chưa có trong bản này: đồng hồ đếm ngược cho từng việc, nhắc nhở, hồ sơ cho
+nhiều trẻ, và lịch sử theo tuần.
 
-Trước khi đưa lên store: thay debug signing config trong
-`android/app/build.gradle.kts` bằng release key, và đưa `docs/PRIVACY.md`
-lên một URL công khai.
+Các bước đưa ứng dụng lên Google Play và App Store nằm trong
+[docs/RELEASE.md](docs/RELEASE.md).
 
 ## Ghi công
 
@@ -134,6 +153,7 @@ lên một URL công khai.
   [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 - Font: Nunito, © The Nunito Project Authors,
   [SIL Open Font License 1.1](assets/fonts/OFL.txt).
+- Âm thanh: được tổng hợp riêng cho dự án này bằng `tool/make_notes.py`.
 
 Bảng lịch trình bằng thẻ hình ("visual schedule") là công cụ có từ lâu trong
 giáo dục mầm non. Ứng dụng này là một bản hiện thực độc lập của ý tưởng đó:

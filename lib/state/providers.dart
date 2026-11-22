@@ -7,7 +7,7 @@ import '../core/clock.dart';
 import '../core/id_generator.dart';
 import '../data/app_repository.dart';
 import '../data/image_store.dart';
-import '../services/speech_service.dart';
+import '../services/sound_service.dart';
 
 /// Opened before the first frame and supplied by `main()`.
 final appRepositoryProvider = Provider<AppRepository>(
@@ -16,11 +16,17 @@ final appRepositoryProvider = Provider<AppRepository>(
 
 final imageStoreProvider = Provider<ImageStore>((ref) => createImageStore());
 
-final speechServiceProvider = Provider<SpeechService>(
-  (ref) => DeviceSpeechService(),
+final soundServiceProvider = Provider<SoundService>(
+  (ref) => AssetSoundService(),
 );
 
 final clockProvider = Provider<Clock>((ref) => DateTime.now);
+
+/// The language a new installation starts in, or null to follow the device.
+///
+/// The app is made for Vietnamese families first, so it opens in Vietnamese
+/// until someone chooses another language.
+final defaultLocaleCodeProvider = Provider<String?>((ref) => 'vi');
 
 final randomProvider = Provider<Random>((ref) => Random());
 

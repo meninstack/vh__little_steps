@@ -14,6 +14,11 @@
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>vi</string>
+	</array>
 	<key>CFBundleName</key>
 	<string>little_steps</string>
 	<key>CFBundlePackageType</key>
@@ -28,6 +33,8 @@
 	<string>Take a photo to make your own task card. Photos stay on this device.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Choose a photo to make your own task card. Photos stay on this device.</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>

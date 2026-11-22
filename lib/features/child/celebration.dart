@@ -45,6 +45,12 @@ class _CelebrationViewState extends State<CelebrationView>
     curve: const Interval(0, 0.22, curve: Curves.easeOutBack),
   );
 
+  /// The new friend bounces in a moment after the card it sits on.
+  late final Animation<double> _friendIn = CurvedAnimation(
+    parent: _controller,
+    curve: const Interval(0.1, 0.45, curve: Curves.elasticOut),
+  );
+
   @override
   void dispose() {
     _controller.dispose();
@@ -91,9 +97,12 @@ class _CelebrationViewState extends State<CelebrationView>
                             color: Color(0xFFFFF1C9),
                             shape: BoxShape.circle,
                           ),
-                          child: SvgPicture.asset(
-                            sticker.asset,
-                            excludeFromSemantics: true,
+                          child: ScaleTransition(
+                            scale: _friendIn,
+                            child: SvgPicture.asset(
+                              sticker.asset,
+                              excludeFromSemantics: true,
+                            ),
                           ),
                         )
                       else

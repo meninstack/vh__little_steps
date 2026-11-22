@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_ui/material_ui.dart';
 
+import '../../core/routine_names.dart';
 import '../../core/theme.dart';
 import '../../data/card_catalog.dart';
 import '../../data/card_resolver.dart';
@@ -66,10 +67,8 @@ class CardPickerScreen extends ConsumerWidget {
             isScrollable: true,
             tabAlignment: TabAlignment.start,
             tabs: [
-              Tab(text: l10n.groupMorning),
-              Tab(text: l10n.groupSchool),
-              Tab(text: l10n.groupCare),
-              Tab(text: l10n.groupHome),
+              for (final group in CardGroup.values)
+                Tab(text: cardGroupName(group, l10n)),
               Tab(text: l10n.groupCustom),
             ],
           ),

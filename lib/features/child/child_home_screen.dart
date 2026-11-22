@@ -9,6 +9,7 @@ import '../../data/card_catalog.dart';
 import '../../data/card_resolver.dart';
 import '../../data/models.dart';
 import '../../l10n/app_localizations.dart';
+import '../../services/sound_service.dart';
 import '../../state/app_controller.dart';
 import '../../state/providers.dart';
 import '../parent/parent_home_screen.dart';
@@ -17,7 +18,8 @@ import 'celebration.dart';
 import 'sticker_book_screen.dart';
 import 'task_tile.dart';
 
-/// The child's board: pick a routine, hear each task, tap its star when done.
+/// The child's board: pick a routine, tap a task to hear its note, tap its
+/// star when done.
 class ChildHomeScreen extends ConsumerStatefulWidget {
   const ChildHomeScreen({super.key});
 
@@ -33,14 +35,13 @@ class _ChildHomeScreenState extends ConsumerState<ChildHomeScreen> {
   Routine? _selected(AppData data) =>
       data.routineById(_selectedRoutineId ?? '') ?? data.routines.firstOrNull;
 
-  void _speak(String text) {
-    if (!ref.read(appControllerProvider).speechEnabled) return;
-    ref
-        .read(speechServiceProvider)
-        .speak(
-          text,
-          languageCode: Localizations.localeOf(context).languageCode,
-        );
+  /// Null while sounds are switched off in the parent area.
+  SoundService? get _sounds => ref.read(appControllerProvider).soundEnabled
+      ? ref.read(soundServiceProvider)
+      : null;
+
+  void _playCard(String cardId) {
+    _sounds?.playNote(NoteSet.wood, noteNumberForCard(cardId));
   }
 
   void _toggle(Routine routine, RoutineItem item) {
@@ -49,8 +50,7 @@ class _ChildHomeScreenState extends ConsumerState<ChildHomeScreen> {
         .toggleItem(routine.id, item.id);
     if (outcome.nowDone) HapticFeedback.mediumImpact();
     if (outcome.routineFinished) {
-      final l10n = AppLocalizations.of(context);
-      _speak('${l10n.celebrateTitle} ${l10n.celebrateBody}');
+      _sounds?.playCelebration();
       showCelebration(context, newStickerId: outcome.newStickerId);
     }
   }
@@ -102,7 +102,7 @@ class _ChildHomeScreenState extends ConsumerState<ChildHomeScreen> {
           child: _TaskBoard(
             data: data,
             routine: routine,
-            onSpeak: _speak,
+            onPlay: _playCard,
             onToggle: _toggle,
           ),
         ),
@@ -155,7 +155,12 @@ class _ChildHomeScreenState extends ConsumerState<ChildHomeScreen> {
                   padding: const EdgeInsets.fromLTRB(16, 10, 8, 6),
                   child: Row(
                     children: [
-                      const Expanded(child: _Brand()),
+                      // A very narrow phone has no room for the mark, the
+                      // name and the buttons; the name matters most.
+                      Expanded(
+                        child: _Brand(showMark: constraints.maxWidth >= 360),
+                      ),
+                      const SizedBox(width: 12),
                       actions,
                     ],
                   ),
@@ -174,22 +179,31 @@ class _ChildHomeScreenState extends ConsumerState<ChildHomeScreen> {
 }
 
 class _Brand extends StatelessWidget {
-  const _Brand();
+  const _Brand({this.showMark = true});
+
+  /// Whether the round star mark is drawn in front of the name.
+  final bool showMark;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
-          width: 40,
-          height: 40,
-          decoration: const BoxDecoration(
-            color: AppColors.primary,
-            shape: BoxShape.circle,
+        if (showMark) ...[
+          Container(
+            width: 40,
+            height: 40,
+            decoration: const BoxDecoration(
+              color: AppColors.primary,
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(
+              Icons.star_rounded,
+              color: Colors.white,
+              size: 28,
+            ),
           ),
-          child: const Icon(Icons.star_rounded, color: Colors.white, size: 28),
-        ),
-        const SizedBox(width: 10),
+          const SizedBox(width: 10),
+        ],
         // The name is never cut short. Where there is too little room for it,
         // on the tablet rail or a small phone, it shrinks to fit.
         Flexible(
@@ -420,13 +434,15 @@ class _TaskBoard extends StatelessWidget {
   const _TaskBoard({
     required this.data,
     required this.routine,
-    required this.onSpeak,
+    required this.onPlay,
     required this.onToggle,
   });
 
   final AppData data;
   final Routine? routine;
-  final ValueChanged<String> onSpeak;
+
+  /// Called with the id of the tapped card.
+  final ValueChanged<String> onPlay;
   final void Function(Routine routine, RoutineItem item) onToggle;
 
   @override
@@ -449,7 +465,7 @@ class _TaskBoard extends StatelessWidget {
         order: index + 1,
         done: data.isDone(routine.id, item.id),
         compact: compact,
-        onSpeak: () => onSpeak(card.label),
+        onPlay: () => onPlay(card.cardId),
         onToggle: () => onToggle(routine, item),
       );
     }

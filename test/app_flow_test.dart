@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:little_steps/app.dart';
 import 'package:little_steps/data/models.dart';
+import 'package:little_steps/features/welcome/welcome_screen.dart';
 import 'package:little_steps/services/photo_picker.dart';
 import 'package:little_steps/state/app_controller.dart';
 import 'package:material_ui/material_ui.dart';
@@ -27,6 +28,79 @@ void main() {
 
   setUp(() => environment = TestEnvironment());
 
+  group('welcome', () {
+    testWidgets('a new installation chooses its routines first', (
+      tester,
+    ) async {
+      await pumpApp(tester, environment, finishWelcome: false);
+
+      expect(find.text('Choose routines to start with'), findsOneWidget);
+      expect(find.text('Wake up'), findsNothing);
+
+      await tester.tap(find.text('Evening'));
+      await tester.ensureVisible(find.text('After school'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('After school'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(WelcomeScreen.startButtonKey));
+      await tester.pumpAndSettle();
+
+      final routines = appState(tester).routines;
+      expect(appState(tester).onboardingDone, isTrue);
+      expect(routines.map((r) => r.presetKey), ['morning', 'after_school']);
+      expect(find.text('Wake up'), findsOneWidget);
+      expect(find.text('After school'), findsOneWidget);
+    });
+
+    testWidgets('a new installation opens in Vietnamese', (tester) async {
+      environment = TestEnvironment(defaultLocaleCode: 'vi');
+
+      await pumpApp(tester, environment, finishWelcome: false);
+
+      expect(find.text('Chọn lịch trình để bắt đầu'), findsOneWidget);
+      expect(find.text('Buổi sáng'), findsOneWidget);
+
+      await tester.tap(find.byKey(WelcomeScreen.startButtonKey));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Thức dậy'), findsOneWidget);
+    });
+
+    testWidgets('the start button waits until a routine is chosen', (
+      tester,
+    ) async {
+      await pumpApp(tester, environment, finishWelcome: false);
+
+      await tester.tap(find.text('Morning'));
+      await tester.tap(find.text('Evening'));
+      await tester.pumpAndSettle();
+
+      final start = tester.widget<FilledButton>(
+        find.byKey(WelcomeScreen.startButtonKey),
+      );
+      expect(start.onPressed, isNull);
+    });
+
+    testWidgets('a family already using the app goes straight to the board', (
+      tester,
+    ) async {
+      environment = TestEnvironment(
+        stored: const AppData(
+          routines: [],
+          progress: DayProgress(date: '2026-11-14'),
+        ),
+      );
+
+      await pumpApp(tester, environment, finishWelcome: false);
+
+      expect(find.text('Choose routines to start with'), findsNothing);
+      expect(
+        find.text('No routines yet. Ask a grown-up to make one!'),
+        findsOneWidget,
+      );
+    });
+  });
+
   group('child board', () {
     testWidgets('opens on the first routine with nothing done', (tester) async {
       await pumpApp(tester, environment);
@@ -38,28 +112,27 @@ void main() {
       expect(find.text('0 of 7'), findsNWidgets(2));
     });
 
-    testWidgets('tapping a card reads its name aloud', (tester) async {
+    testWidgets('tapping a card plays its note', (tester) async {
       await pumpApp(tester, environment);
 
       await tester.tap(find.text('Brush teeth'));
       await tester.pump();
 
-      expect(environment.speech.spoken, ['Brush teeth']);
+      // Brush teeth is the fourth built-in card.
+      expect(environment.sounds.played, ['wood 4']);
       expect(appState(tester).totalStars, 0);
     });
 
-    testWidgets('stays silent when reading aloud is switched off', (
-      tester,
-    ) async {
+    testWidgets('stays silent when sounds are switched off', (tester) async {
       await pumpApp(tester, environment);
       ProviderScope.containerOf(tester.element(find.byType(LittleStepsApp)))
           .read(appControllerProvider.notifier)
-          .setSpeechEnabled(false);
+          .setSoundEnabled(false);
 
       await tester.tap(find.text('Brush teeth'));
       await tester.pump();
 
-      expect(environment.speech.spoken, isEmpty);
+      expect(environment.sounds.played, isEmpty);
     });
 
     testWidgets('tapping a star marks the task done, tapping again undoes it', (
@@ -117,10 +190,7 @@ void main() {
         find.text('A new friend joined your sticker book!'),
         findsOneWidget,
       );
-      expect(
-        environment.speech.spoken.last,
-        'Great job! You finished everything!',
-      );
+      expect(environment.sounds.played.last, 'celebrate');
 
       await tester.tap(find.text('Yay!'));
       await tester.pumpAndSettle();
@@ -136,7 +206,8 @@ void main() {
       await tester.tap(find.byTooltip('Sticker book'));
       await tester.pumpAndSettle();
 
-      expect(find.text('0 of 24 friends'), findsOneWidget);
+      expect(find.text('0 of 48 friends'), findsOneWidget);
+      expect(find.text('Home and farm'), findsOneWidget);
       expect(find.text('No stars yet'), findsOneWidget);
       expect(find.text('?'), findsWidgets);
     });
@@ -173,7 +244,7 @@ void main() {
 
         await tester.tap(find.byTooltip('Sticker book'));
         await tester.pumpAndSettle();
-        expect(find.text('0 of 24 friends'), findsOneWidget);
+        expect(find.text('0 of 48 friends'), findsOneWidget);
         await tester.pageBack();
         await tester.pumpAndSettle();
 
@@ -365,6 +436,23 @@ void main() {
 
       expect(find.text("Grown-ups' area"), findsOneWidget);
       expect(appState(tester).routines, hasLength(2));
+    });
+
+    testWidgets('adds a ready-made routine and opens it', (tester) async {
+      await pumpApp(tester, environment);
+      await openParentArea(tester);
+
+      await tester.tap(find.text('Add a ready-made routine'));
+      await tester.pumpAndSettle();
+      expect(find.text('Ready-made routines'), findsOneWidget);
+
+      await tester.tap(find.text('Mealtime'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Edit routine'), findsOneWidget);
+      final added = appState(tester).routines.last;
+      expect(added.presetKey, 'mealtime');
+      expect(added.items, hasLength(6));
     });
 
     testWidgets('makes a card from a photo and a name', (tester) async {

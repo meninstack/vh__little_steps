@@ -30,6 +30,8 @@ Color cardTint(CardGroup? group) => switch (group) {
   CardGroup.school => const Color(0xFFD9E8FF),
   CardGroup.care => const Color(0xFFD5F3E4),
   CardGroup.home => const Color(0xFFE9DEFF),
+  CardGroup.outside => const Color(0xFFFFDFC4),
+  CardGroup.manners => const Color(0xFFCDEEF3),
   null => const Color(0xFFFFDDE8),
 };
 

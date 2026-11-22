@@ -104,6 +104,30 @@ abstract class AppLocalizations {
   /// **'Little Steps'**
   String get appTitle;
 
+  /// No description provided for @welcomeIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'A picture routine chart that helps your child do everyday tasks, one step at a time.'**
+  String get welcomeIntro;
+
+  /// No description provided for @welcomePickRoutines.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose routines to start with'**
+  String get welcomePickRoutines;
+
+  /// No description provided for @welcomePickRoutinesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'You can add, change or remove them later in the grown-ups\' area.'**
+  String get welcomePickRoutinesHint;
+
+  /// No description provided for @welcomeStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Get started'**
+  String get welcomeStart;
+
   /// No description provided for @commonCancel.
   ///
   /// In en, this message translates to:
@@ -152,6 +176,36 @@ abstract class AppLocalizations {
   /// **'Finish a routine to meet this friend'**
   String get stickerLocked;
 
+  /// No description provided for @stickerSetFarm.
+  ///
+  /// In en, this message translates to:
+  /// **'Home and farm'**
+  String get stickerSetFarm;
+
+  /// No description provided for @stickerSetForest.
+  ///
+  /// In en, this message translates to:
+  /// **'In the forest'**
+  String get stickerSetForest;
+
+  /// No description provided for @stickerSetWild.
+  ///
+  /// In en, this message translates to:
+  /// **'Wild animals'**
+  String get stickerSetWild;
+
+  /// No description provided for @stickerSetSea.
+  ///
+  /// In en, this message translates to:
+  /// **'In the sea'**
+  String get stickerSetSea;
+
+  /// No description provided for @stickerSetTiny.
+  ///
+  /// In en, this message translates to:
+  /// **'Small and magical'**
+  String get stickerSetTiny;
+
   /// No description provided for @totalStars.
   ///
   /// In en, this message translates to:
@@ -181,12 +235,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No routines yet. Ask a grown-up to make one!'**
   String get childNoRoutines;
-
-  /// No description provided for @semanticHear.
-  ///
-  /// In en, this message translates to:
-  /// **'Hear {name}'**
-  String semanticHear(String name);
 
   /// No description provided for @semanticMarkDone.
   ///
@@ -290,11 +338,65 @@ abstract class AppLocalizations {
   /// **'Evening'**
   String get presetEvening;
 
+  /// No description provided for @presetAfterSchool.
+  ///
+  /// In en, this message translates to:
+  /// **'After school'**
+  String get presetAfterSchool;
+
+  /// No description provided for @presetGoingOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Going out'**
+  String get presetGoingOut;
+
+  /// No description provided for @presetMealtime.
+  ///
+  /// In en, this message translates to:
+  /// **'Mealtime'**
+  String get presetMealtime;
+
+  /// No description provided for @presetBedtime.
+  ///
+  /// In en, this message translates to:
+  /// **'Bedtime'**
+  String get presetBedtime;
+
+  /// No description provided for @presetWeekend.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekend'**
+  String get presetWeekend;
+
+  /// No description provided for @presetChores.
+  ///
+  /// In en, this message translates to:
+  /// **'Helping at home'**
+  String get presetChores;
+
+  /// No description provided for @presetDoctor.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor visit'**
+  String get presetDoctor;
+
   /// No description provided for @newRoutine.
   ///
   /// In en, this message translates to:
   /// **'New routine'**
   String get newRoutine;
+
+  /// No description provided for @addFromTemplate.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a ready-made routine'**
+  String get addFromTemplate;
+
+  /// No description provided for @templatesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready-made routines'**
+  String get templatesTitle;
 
   /// No description provided for @taskCount.
   ///
@@ -392,6 +494,18 @@ abstract class AppLocalizations {
   /// **'Home & bedtime'**
   String get groupHome;
 
+  /// No description provided for @groupOutside.
+  ///
+  /// In en, this message translates to:
+  /// **'Out and about'**
+  String get groupOutside;
+
+  /// No description provided for @groupManners.
+  ///
+  /// In en, this message translates to:
+  /// **'Kind words'**
+  String get groupManners;
+
   /// No description provided for @groupCustom.
   ///
   /// In en, this message translates to:
@@ -476,11 +590,11 @@ abstract class AppLocalizations {
   /// **'System'**
   String get languageSystem;
 
-  /// No description provided for @settingsSpeech.
+  /// No description provided for @settingsSound.
   ///
   /// In en, this message translates to:
-  /// **'Read card names aloud'**
-  String get settingsSpeech;
+  /// **'Play sounds'**
+  String get settingsSound;
 
   /// No description provided for @settingsResetToday.
   ///

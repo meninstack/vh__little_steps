@@ -105,17 +105,20 @@ class _RoutineEditorScreenState extends ConsumerState<RoutineEditorScreen> {
         const SizedBox(height: 8),
         Text(l10n.routineIconLabel, style: theme.textTheme.titleMedium),
         const SizedBox(height: 8),
-        Wrap(
-          spacing: 10,
-          runSpacing: 10,
-          children: [
-            for (final iconId in routineIconIds)
-              _IconChoice(
-                iconId: iconId,
-                selected: routine.iconId == iconId,
-                onTap: () => controller.setRoutineIcon(routine.id, iconId),
-              ),
-          ],
+        // One row that scrolls sideways, so the tasks below stay on screen.
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            spacing: 10,
+            children: [
+              for (final iconId in routineIconIds)
+                _IconChoice(
+                  iconId: iconId,
+                  selected: routine.iconId == iconId,
+                  onTap: () => controller.setRoutineIcon(routine.id, iconId),
+                ),
+            ],
+          ),
         ),
         const SizedBox(height: 24),
         Row(

@@ -151,7 +151,8 @@ class AppData {
     this.stickers = const [],
     this.totalStars = 0,
     this.localeCode,
-    this.speechEnabled = true,
+    this.soundEnabled = true,
+    this.onboardingDone = true,
   });
 
   factory AppData.fromJson(Map<String, dynamic> json) => AppData(
@@ -170,7 +171,10 @@ class AppData {
     ],
     totalStars: json['totalStars'] as int? ?? 0,
     localeCode: json['localeCode'] as String?,
-    speechEnabled: json['speechEnabled'] as bool? ?? true,
+    soundEnabled: json['soundEnabled'] as bool? ?? true,
+    // Data saved before the welcome screen existed belongs to a family
+    // that is already using the app.
+    onboardingDone: json['onboardingDone'] as bool? ?? true,
   );
 
   final List<Routine> routines;
@@ -186,7 +190,11 @@ class AppData {
   /// `vi`, `en`, or null to follow the device language.
   final String? localeCode;
 
-  final bool speechEnabled;
+  /// Whether taps play notes and a finished routine plays its tune.
+  final bool soundEnabled;
+
+  /// False on a new installation until the welcome screen is finished.
+  final bool onboardingDone;
 
   Routine? routineById(String id) {
     for (final routine in routines) {
@@ -218,7 +226,8 @@ class AppData {
     List<String>? stickers,
     int? totalStars,
     ValueGetter<String?>? localeCode,
-    bool? speechEnabled,
+    bool? soundEnabled,
+    bool? onboardingDone,
   }) => AppData(
     routines: routines ?? this.routines,
     customCards: customCards ?? this.customCards,
@@ -226,7 +235,8 @@ class AppData {
     stickers: stickers ?? this.stickers,
     totalStars: totalStars ?? this.totalStars,
     localeCode: localeCode != null ? localeCode() : this.localeCode,
-    speechEnabled: speechEnabled ?? this.speechEnabled,
+    soundEnabled: soundEnabled ?? this.soundEnabled,
+    onboardingDone: onboardingDone ?? this.onboardingDone,
   );
 
   Map<String, dynamic> toJson() => {
@@ -237,6 +247,7 @@ class AppData {
     'stickers': stickers,
     'totalStars': totalStars,
     'localeCode': ?localeCode,
-    'speechEnabled': speechEnabled,
+    'soundEnabled': soundEnabled,
+    'onboardingDone': onboardingDone,
   };
 }

@@ -2,6 +2,10 @@
   "@@locale": "en",
 
   "appTitle": "Little Steps",
+  "welcomeIntro": "A picture routine chart that helps your child do everyday tasks, one step at a time.",
+  "welcomePickRoutines": "Choose routines to start with",
+  "welcomePickRoutinesHint": "You can add, change or remove them later in the grown-ups' area.",
+  "welcomeStart": "Get started",
 
   "commonCancel": "Cancel",
   "commonSave": "Save",
@@ -18,6 +22,11 @@
     }
   },
   "stickerLocked": "Finish a routine to meet this friend",
+  "stickerSetFarm": "Home and farm",
+  "stickerSetForest": "In the forest",
+  "stickerSetWild": "Wild animals",
+  "stickerSetSea": "In the sea",
+  "stickerSetTiny": "Small and magical",
   "totalStars": "{count, plural, =0{No stars yet} =1{1 star} other{{count} stars}}",
   "@totalStars": {
     "placeholders": {
@@ -35,12 +44,6 @@
   },
   "childEmptyRoutine": "No tasks yet. Ask a grown-up to add some!",
   "childNoRoutines": "No routines yet. Ask a grown-up to make one!",
-  "semanticHear": "Hear {name}",
-  "@semanticHear": {
-    "placeholders": {
-      "name": {"type": "String"}
-    }
-  },
   "semanticMarkDone": "Mark {name} as done",
   "@semanticMarkDone": {
     "placeholders": {
@@ -78,7 +81,16 @@
 
   "presetMorning": "Morning",
   "presetEvening": "Evening",
+  "presetAfterSchool": "After school",
+  "presetGoingOut": "Going out",
+  "presetMealtime": "Mealtime",
+  "presetBedtime": "Bedtime",
+  "presetWeekend": "Weekend",
+  "presetChores": "Helping at home",
+  "presetDoctor": "Doctor visit",
   "newRoutine": "New routine",
+  "addFromTemplate": "Add a ready-made routine",
+  "templatesTitle": "Ready-made routines",
   "taskCount": "{count, plural, =0{No tasks} =1{1 task} other{{count} tasks}}",
   "@taskCount": {
     "placeholders": {
@@ -107,6 +119,8 @@
   "groupSchool": "School",
   "groupCare": "Meals & care",
   "groupHome": "Home & bedtime",
+  "groupOutside": "Out and about",
+  "groupManners": "Kind words",
   "groupCustom": "My cards",
   "pickerNoCustomCards": "You have not made any cards yet. Create one in “My cards”.",
 
@@ -128,7 +142,7 @@
 
   "settingsLanguage": "Language",
   "languageSystem": "System",
-  "settingsSpeech": "Read card names aloud",
+  "settingsSound": "Play sounds",
   "settingsResetToday": "Reset today's progress",
   "settingsResetConfirm": "Clear every star earned today?",
   "settingsResetDone": "Today's progress was reset.",

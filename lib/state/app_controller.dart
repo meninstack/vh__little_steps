@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../core/clock.dart';
 import '../data/card_catalog.dart';
 import '../data/models.dart';
+import '../data/routine_templates.dart';
 import 'providers.dart';
 
 final appControllerProvider = NotifierProvider<AppController, AppData>(
@@ -45,41 +46,28 @@ class AppController extends Notifier<AppData> {
 
   String _today() => dateKey(ref.read(clockProvider)());
 
-  AppData _starterData(String today) {
-    final ids = ref.read(idGeneratorProvider);
-    Routine starter(String presetKey, String iconId, List<String> cardIds) =>
-        Routine(
-          id: ids.next(),
-          name: '',
-          presetKey: presetKey,
-          iconId: iconId,
-          items: [
-            for (final cardId in cardIds)
-              RoutineItem(id: ids.next(), cardId: cardId),
-          ],
-        );
+  AppData _starterData(String today) => AppData(
+    routines: [
+      for (final key in starterTemplateKeys)
+        _routineFrom(routineTemplatesByKey[key]!),
+    ],
+    progress: DayProgress(date: today),
+    localeCode: ref.read(defaultLocaleCodeProvider),
+    onboardingDone: false,
+  );
 
-    return AppData(
-      routines: [
-        starter('morning', 'sun', const [
-          'wake_up',
-          'make_bed',
-          'brush_teeth',
-          'wash_face',
-          'get_dressed',
-          'breakfast',
-          'pack_bag',
-        ]),
-        starter('evening', 'moon', const [
-          'tidy_toys',
-          'take_bath',
-          'eat_dinner',
-          'brush_teeth',
-          'story_time',
-          'go_to_sleep',
-        ]),
+  /// A new, unnamed routine holding the template's cards.
+  Routine _routineFrom(RoutineTemplate template) {
+    final ids = ref.read(idGeneratorProvider);
+    return Routine(
+      id: ids.next(),
+      name: '',
+      presetKey: template.presetKey,
+      iconId: template.iconId,
+      items: [
+        for (final cardId in template.cardIds)
+          RoutineItem(id: ids.next(), cardId: cardId),
       ],
-      progress: DayProgress(date: today),
     );
   }
 
@@ -207,6 +195,16 @@ class AppController extends Notifier<AppData> {
       ),
     );
     return id;
+  }
+
+  /// Adds a copy of the ready-made routine [presetKey] and returns its id,
+  /// or null when there is no such template.
+  String? addRoutineFromTemplate(String presetKey) {
+    final template = routineTemplatesByKey[presetKey];
+    if (template == null) return null;
+    final routine = _routineFrom(template);
+    _commit(state.copyWith(routines: [...state.routines, routine]));
+    return routine.id;
   }
 
   void renameRoutine(String routineId, String name) {
@@ -348,13 +346,31 @@ class AppController extends Notifier<AppData> {
   // Settings
   // ---------------------------------------------------------------------
 
+  /// Ends the first-run welcome with the ready-made routines the family
+  /// chose, in the order the templates are listed.
+  void finishOnboarding(Set<String> templateKeys) {
+    final existing = {
+      for (final routine in state.routines) routine.presetKey: routine,
+    };
+    _commit(
+      state.copyWith(
+        routines: [
+          for (final template in routineTemplates)
+            if (templateKeys.contains(template.presetKey))
+              existing[template.presetKey] ?? _routineFrom(template),
+        ],
+        onboardingDone: true,
+      ),
+    );
+  }
+
   /// Pass null to follow the device language.
   void setLocale(String? localeCode) {
     _commit(state.copyWith(localeCode: () => localeCode));
   }
 
-  void setSpeechEnabled(bool enabled) {
-    _commit(state.copyWith(speechEnabled: enabled));
+  void setSoundEnabled(bool enabled) {
+    _commit(state.copyWith(soundEnabled: enabled));
   }
 
   /// Clears today's stars so the routines can be run again. Stickers

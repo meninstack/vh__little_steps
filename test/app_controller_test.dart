@@ -5,7 +5,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:little_steps/data/card_catalog.dart';
 import 'package:little_steps/data/models.dart';
+import 'package:little_steps/data/routine_templates.dart';
 import 'package:little_steps/state/app_controller.dart';
+import 'package:little_steps/state/providers.dart';
 
 import 'support/harness.dart';
 
@@ -16,8 +18,11 @@ void main() {
   AppData state() => container.read(appControllerProvider);
   AppController controller() => container.read(appControllerProvider.notifier);
 
-  void start({AppData? stored}) {
-    environment = TestEnvironment(stored: stored);
+  void start({AppData? stored, String? defaultLocaleCode}) {
+    environment = TestEnvironment(
+      stored: stored,
+      defaultLocaleCode: defaultLocaleCode,
+    );
     container = ProviderContainer.test(overrides: environment.overrides);
   }
 
@@ -39,6 +44,36 @@ void main() {
       expect(state().progress.date, '2026-11-14');
       expect(state().totalStars, 0);
       expect(state().stickers, isEmpty);
+    });
+
+    test('the app opens in Vietnamese unless told otherwise', () {
+      final container = ProviderContainer.test();
+
+      expect(container.read(defaultLocaleCodeProvider), 'vi');
+    });
+
+    test('a new installation starts in the default language', () {
+      start(defaultLocaleCode: 'vi');
+
+      expect(state().localeCode, 'vi');
+    });
+
+    test('opens on the welcome screen until it is finished', () {
+      start();
+
+      expect(state().onboardingDone, isFalse);
+    });
+
+    test('the welcome keeps the chosen routines and adds new ones', () {
+      start();
+      final morning = state().routines.first;
+
+      controller().finishOnboarding({'bedtime', 'morning'});
+
+      expect(state().onboardingDone, isTrue);
+      expect(state().routines.map((r) => r.presetKey), ['morning', 'bedtime']);
+      expect(state().routines.first.id, morning.id);
+      expect(state().routines.last.items, isNotEmpty);
     });
 
     test('starter routines only use cards that exist', () {
@@ -215,6 +250,28 @@ void main() {
       expect(state().routines, hasLength(3));
     });
 
+    test('a ready-made routine arrives with its cards', () {
+      start();
+
+      final id = controller().addRoutineFromTemplate('mealtime')!;
+
+      final routine = state().routineById(id)!;
+      expect(routine.name, isEmpty);
+      expect(routine.presetKey, 'mealtime');
+      expect(routine.iconId, 'meal');
+      expect([
+        for (final item in routine.items) item.cardId,
+      ], routineTemplatesByKey['mealtime']!.cardIds);
+      expect(state().routines, hasLength(3));
+    });
+
+    test('an unknown ready-made routine adds nothing', () {
+      start();
+
+      expect(controller().addRoutineFromTemplate('no-such-routine'), isNull);
+      expect(state().routines, hasLength(2));
+    });
+
     test('renames and changes the icon', () {
       start();
       final id = state().routines.first.id;
@@ -365,13 +422,22 @@ void main() {
   });
 
   group('saving', () {
+    test('data saved before the welcome screen existed skips it', () {
+      start();
+      final saved =
+          jsonDecode(jsonEncode(state().toJson())) as Map<String, dynamic>
+            ..remove('onboardingDone');
+
+      expect(AppData.fromJson(saved).onboardingDone, isTrue);
+    });
+
     test('every change is written, and survives a JSON round trip', () async {
       start();
       final routine = state().routines.first;
       controller().toggleItem(routine.id, routine.items.first.id);
       controller().renameRoutine(routine.id, 'Sáng');
       controller().setLocale('vi');
-      controller().setSpeechEnabled(false);
+      controller().setSoundEnabled(false);
       await controller().addCustomCard(
         label: 'Cho mèo ăn',
         imageBytes: Uint8List.fromList([9]),
@@ -386,7 +452,7 @@ void main() {
       expect(restored.routines.first.name, 'Sáng');
       expect(restored.isDone(routine.id, routine.items.first.id), isTrue);
       expect(restored.localeCode, 'vi');
-      expect(restored.speechEnabled, isFalse);
+      expect(restored.soundEnabled, isFalse);
       expect(restored.customCards.single.label, 'Cho mèo ăn');
     });
   });

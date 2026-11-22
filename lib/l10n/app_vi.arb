@@ -2,6 +2,10 @@
   "@@locale": "vi",
 
   "appTitle": "Từng bước nhỏ",
+  "welcomeIntro": "Bảng lịch trình bằng hình giúp bé tự làm các việc hằng ngày, từng bước một.",
+  "welcomePickRoutines": "Chọn lịch trình để bắt đầu",
+  "welcomePickRoutinesHint": "Sau này bạn vẫn thêm, sửa hoặc xóa được trong khu vực ba mẹ.",
+  "welcomeStart": "Bắt đầu",
 
   "commonCancel": "Hủy",
   "commonSave": "Lưu",
@@ -12,13 +16,17 @@
   "stickerBook": "Sổ nhãn dán",
   "stickerBookProgress": "{owned}/{total} bạn thú",
   "stickerLocked": "Làm xong một lịch trình để gặp bạn này",
+  "stickerSetFarm": "Nhà và nông trại",
+  "stickerSetForest": "Trong rừng",
+  "stickerSetWild": "Thú hoang dã",
+  "stickerSetSea": "Dưới biển",
+  "stickerSetTiny": "Nhỏ bé và kỳ diệu",
   "totalStars": "{count, plural, =0{Chưa có sao} other{{count} sao}}",
 
   "parentArea": "Ba mẹ",
   "progressLabel": "{done}/{total}",
   "childEmptyRoutine": "Chưa có việc nào. Nhờ ba mẹ thêm nhé!",
   "childNoRoutines": "Chưa có lịch trình. Nhờ ba mẹ tạo nhé!",
-  "semanticHear": "Nghe {name}",
   "semanticMarkDone": "Đánh dấu đã xong {name}",
   "semanticMarkNotDone": "Đánh dấu chưa xong {name}",
 
@@ -40,7 +48,16 @@
 
   "presetMorning": "Buổi sáng",
   "presetEvening": "Buổi tối",
+  "presetAfterSchool": "Đi học về",
+  "presetGoingOut": "Trước khi ra ngoài",
+  "presetMealtime": "Giờ ăn",
+  "presetBedtime": "Giờ đi ngủ",
+  "presetWeekend": "Cuối tuần",
+  "presetChores": "Việc nhà",
+  "presetDoctor": "Đi khám bác sĩ",
   "newRoutine": "Lịch trình mới",
+  "addFromTemplate": "Thêm lịch trình mẫu",
+  "templatesTitle": "Lịch trình mẫu",
   "taskCount": "{count, plural, =0{Chưa có việc} other{{count} việc}}",
 
   "editRoutine": "Sửa lịch trình",
@@ -59,6 +76,8 @@
   "groupSchool": "Đi học",
   "groupCare": "Ăn uống & vệ sinh",
   "groupHome": "Ở nhà & giờ ngủ",
+  "groupOutside": "Ra ngoài",
+  "groupManners": "Cư xử",
   "groupCustom": "Thẻ của tôi",
   "pickerNoCustomCards": "Bạn chưa tạo thẻ nào. Hãy tạo trong mục “Thẻ của tôi”.",
 
@@ -75,7 +94,7 @@
 
   "settingsLanguage": "Ngôn ngữ",
   "languageSystem": "Theo máy",
-  "settingsSpeech": "Đọc tên thẻ thành tiếng",
+  "settingsSound": "Phát âm thanh",
   "settingsResetToday": "Đặt lại tiến độ hôm nay",
   "settingsResetConfirm": "Xóa mọi ngôi sao đã nhận hôm nay?",
   "settingsResetDone": "Đã đặt lại tiến độ hôm nay.",
