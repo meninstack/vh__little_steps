@@ -12,6 +12,11 @@
   "stickerBook": "Sổ nhãn dán",
   "stickerBookProgress": "{owned}/{total} bạn thú",
   "stickerLocked": "Làm xong một lịch trình để gặp bạn này",
+  "stickerSetFarm": "Nhà và nông trại",
+  "stickerSetForest": "Trong rừng",
+  "stickerSetWild": "Thú hoang dã",
+  "stickerSetSea": "Dưới biển",
+  "stickerSetTiny": "Nhỏ bé và kỳ diệu",
   "totalStars": "{count, plural, =0{Chưa có sao} other{{count} sao}}",
 
   "parentArea": "Ba mẹ",
@@ -39,7 +44,16 @@
 
   "presetMorning": "Buổi sáng",
   "presetEvening": "Buổi tối",
+  "presetAfterSchool": "Đi học về",
+  "presetGoingOut": "Trước khi ra ngoài",
+  "presetMealtime": "Giờ ăn",
+  "presetBedtime": "Giờ đi ngủ",
+  "presetWeekend": "Cuối tuần",
+  "presetChores": "Việc nhà",
+  "presetDoctor": "Đi khám bác sĩ",
   "newRoutine": "Lịch trình mới",
+  "addFromTemplate": "Thêm lịch trình mẫu",
+  "templatesTitle": "Lịch trình mẫu",
   "taskCount": "{count, plural, =0{Chưa có việc} other{{count} việc}}",
 
   "editRoutine": "Sửa lịch trình",
@@ -58,6 +72,8 @@
   "groupSchool": "Đi học",
   "groupCare": "Ăn uống & vệ sinh",
   "groupHome": "Ở nhà & giờ ngủ",
+  "groupOutside": "Ra ngoài",
+  "groupManners": "Cư xử",
   "groupCustom": "Thẻ của tôi",
   "pickerNoCustomCards": "Bạn chưa tạo thẻ nào. Hãy tạo trong mục “Thẻ của tôi”.",
 

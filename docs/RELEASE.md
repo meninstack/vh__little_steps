@@ -157,11 +157,13 @@ Bản nháp, sửa tuỳ ý trước khi nộp.
   > Dành cho bé
   > • Mỗi việc là một thẻ lớn có hình, số thứ tự và tên
   > • Thanh tiến độ đầy dần theo số sao
-  > • 24 bạn thú để sưu tầm
+  > • 48 bạn thú để sưu tầm, chia thành năm bộ
   > • Mỗi sáng bảng việc bắt đầu lại từ đầu
   >
   > Dành cho ba mẹ
-  > • 39 thẻ có sẵn: buổi sáng, đi học, ăn uống và vệ sinh, ở nhà và giờ ngủ
+  > • 88 thẻ có sẵn: buổi sáng, đi học, ăn uống và vệ sinh, ở nhà và giờ ngủ,
+  >   ra ngoài, cư xử
+  > • 9 lịch trình mẫu: đi học về, giờ ăn, giờ đi ngủ, cuối tuần, việc nhà...
   > • Tự tạo thẻ từ ảnh của gia đình
   > • Nhiều lịch trình, kéo để đổi thứ tự các việc
   > • Tiếng Việt và tiếng Anh
@@ -189,11 +191,13 @@ Bản nháp, sửa tuỳ ý trước khi nộp.
   > For children
   > • Every task is a large card with a picture, a number and a name
   > • A progress bar fills up with every star
-  > • 24 animal friends to collect
+  > • 48 animal friends to collect, in five sets
   > • The board starts fresh every morning
   >
   > For grown-ups
-  > • 39 ready-made cards: morning, school, meals and care, home and bedtime
+  > • 88 ready-made cards: morning, school, meals and care, home and bedtime,
+  >   out and about, kind words
+  > • 9 ready-made routines: after school, mealtime, bedtime, weekend...
   > • Make your own cards from family photos
   > • Several routines, drag to reorder tasks
   > • English and Vietnamese

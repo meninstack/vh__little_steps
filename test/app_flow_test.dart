@@ -132,7 +132,8 @@ void main() {
       await tester.tap(find.byTooltip('Sticker book'));
       await tester.pumpAndSettle();
 
-      expect(find.text('0 of 24 friends'), findsOneWidget);
+      expect(find.text('0 of 48 friends'), findsOneWidget);
+      expect(find.text('Home and farm'), findsOneWidget);
       expect(find.text('No stars yet'), findsOneWidget);
       expect(find.text('?'), findsWidgets);
     });
@@ -169,7 +170,7 @@ void main() {
 
         await tester.tap(find.byTooltip('Sticker book'));
         await tester.pumpAndSettle();
-        expect(find.text('0 of 24 friends'), findsOneWidget);
+        expect(find.text('0 of 48 friends'), findsOneWidget);
         await tester.pageBack();
         await tester.pumpAndSettle();
 
@@ -361,6 +362,23 @@ void main() {
 
       expect(find.text("Grown-ups' area"), findsOneWidget);
       expect(appState(tester).routines, hasLength(2));
+    });
+
+    testWidgets('adds a ready-made routine and opens it', (tester) async {
+      await pumpApp(tester, environment);
+      await openParentArea(tester);
+
+      await tester.tap(find.text('Add a ready-made routine'));
+      await tester.pumpAndSettle();
+      expect(find.text('Ready-made routines'), findsOneWidget);
+
+      await tester.tap(find.text('Mealtime'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Edit routine'), findsOneWidget);
+      final added = appState(tester).routines.last;
+      expect(added.presetKey, 'mealtime');
+      expect(added.items, hasLength(6));
     });
 
     testWidgets('makes a card from a photo and a name', (tester) async {

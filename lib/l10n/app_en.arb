@@ -18,6 +18,11 @@
     }
   },
   "stickerLocked": "Finish a routine to meet this friend",
+  "stickerSetFarm": "Home and farm",
+  "stickerSetForest": "In the forest",
+  "stickerSetWild": "Wild animals",
+  "stickerSetSea": "In the sea",
+  "stickerSetTiny": "Small and magical",
   "totalStars": "{count, plural, =0{No stars yet} =1{1 star} other{{count} stars}}",
   "@totalStars": {
     "placeholders": {
@@ -72,7 +77,16 @@
 
   "presetMorning": "Morning",
   "presetEvening": "Evening",
+  "presetAfterSchool": "After school",
+  "presetGoingOut": "Going out",
+  "presetMealtime": "Mealtime",
+  "presetBedtime": "Bedtime",
+  "presetWeekend": "Weekend",
+  "presetChores": "Helping at home",
+  "presetDoctor": "Doctor visit",
   "newRoutine": "New routine",
+  "addFromTemplate": "Add a ready-made routine",
+  "templatesTitle": "Ready-made routines",
   "taskCount": "{count, plural, =0{No tasks} =1{1 task} other{{count} tasks}}",
   "@taskCount": {
     "placeholders": {
@@ -101,6 +115,8 @@
   "groupSchool": "School",
   "groupCare": "Meals & care",
   "groupHome": "Home & bedtime",
+  "groupOutside": "Out and about",
+  "groupManners": "Kind words",
   "groupCustom": "My cards",
   "pickerNoCustomCards": "You have not made any cards yet. Create one in “My cards”.",
 

@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:little_steps/data/card_catalog.dart';
 import 'package:little_steps/data/models.dart';
+import 'package:little_steps/data/routine_templates.dart';
 import 'package:little_steps/state/app_controller.dart';
 
 import 'support/harness.dart';
@@ -213,6 +214,28 @@ void main() {
       expect(routine.presetKey, isNull);
       expect(routine.items, isEmpty);
       expect(state().routines, hasLength(3));
+    });
+
+    test('a ready-made routine arrives with its cards', () {
+      start();
+
+      final id = controller().addRoutineFromTemplate('mealtime')!;
+
+      final routine = state().routineById(id)!;
+      expect(routine.name, isEmpty);
+      expect(routine.presetKey, 'mealtime');
+      expect(routine.iconId, 'meal');
+      expect([
+        for (final item in routine.items) item.cardId,
+      ], routineTemplatesByKey['mealtime']!.cardIds);
+      expect(state().routines, hasLength(3));
+    });
+
+    test('an unknown ready-made routine adds nothing', () {
+      start();
+
+      expect(controller().addRoutineFromTemplate('no-such-routine'), isNull);
+      expect(state().routines, hasLength(2));
     });
 
     test('renames and changes the icon', () {

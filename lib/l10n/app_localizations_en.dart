@@ -39,6 +39,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get stickerLocked => 'Finish a routine to meet this friend';
 
   @override
+  String get stickerSetFarm => 'Home and farm';
+
+  @override
+  String get stickerSetForest => 'In the forest';
+
+  @override
+  String get stickerSetWild => 'Wild animals';
+
+  @override
+  String get stickerSetSea => 'In the sea';
+
+  @override
+  String get stickerSetTiny => 'Small and magical';
+
+  @override
   String totalStars(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
@@ -122,7 +137,34 @@ class AppLocalizationsEn extends AppLocalizations {
   String get presetEvening => 'Evening';
 
   @override
+  String get presetAfterSchool => 'After school';
+
+  @override
+  String get presetGoingOut => 'Going out';
+
+  @override
+  String get presetMealtime => 'Mealtime';
+
+  @override
+  String get presetBedtime => 'Bedtime';
+
+  @override
+  String get presetWeekend => 'Weekend';
+
+  @override
+  String get presetChores => 'Helping at home';
+
+  @override
+  String get presetDoctor => 'Doctor visit';
+
+  @override
   String get newRoutine => 'New routine';
+
+  @override
+  String get addFromTemplate => 'Add a ready-made routine';
+
+  @override
+  String get templatesTitle => 'Ready-made routines';
 
   @override
   String taskCount(int count) {
@@ -182,6 +224,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get groupHome => 'Home & bedtime';
+
+  @override
+  String get groupOutside => 'Out and about';
+
+  @override
+  String get groupManners => 'Kind words';
 
   @override
   String get groupCustom => 'My cards';

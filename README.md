@@ -23,16 +23,21 @@ không tài khoản, không thu thập dữ liệu.
   để đánh dấu đã xong.
 - Thanh tiến độ đầy dần theo số sao trẻ nhận được.
 - Làm xong một lịch trình, trẻ được chúc mừng bằng một hồi chuông và có thêm
-  một bạn thú mới trong sổ nhãn dán (có 24 bạn để sưu tầm). Chạm vào bạn thú
+  một bạn thú mới trong sổ nhãn dán (có 48 bạn để sưu tầm, chia thành năm
+  bộ: nhà và nông trại, rừng, thú hoang dã, biển, nhỏ bé và kỳ diệu). Chạm
+  vào bạn thú
   đã có để nghe nốt chuông của bạn ấy.
 - Mỗi sáng, bảng việc bắt đầu lại từ đầu.
 
 **Dành cho ba mẹ** (phải trả lời một phép nhân mới vào được)
 
-- Nhiều lịch trình, mỗi lịch trình có tên và biểu tượng riêng. Buổi sáng và
-  Buổi tối có sẵn từ đầu.
-- 39 thẻ có sẵn, chia thành bốn nhóm: buổi sáng, đi học, ăn uống và vệ sinh,
-  ở nhà và giờ ngủ.
+- Nhiều lịch trình, mỗi lịch trình có tên và biểu tượng riêng (16 biểu
+  tượng). Buổi sáng và Buổi tối có sẵn từ đầu.
+- Chín lịch trình mẫu để thêm nhanh rồi sửa lại theo ý: buổi sáng, buổi tối,
+  đi học về, trước khi ra ngoài, giờ ăn, giờ đi ngủ, cuối tuần, việc nhà, đi
+  khám bác sĩ.
+- 88 thẻ có sẵn, chia thành sáu nhóm: buổi sáng, đi học, ăn uống và vệ sinh,
+  ở nhà và giờ ngủ, ra ngoài, cư xử.
 - Tự tạo thẻ từ một tấm ảnh và một cái tên.
 - Kéo để đổi thứ tự các việc.
 - Tiếng Việt và tiếng Anh, đổi được ngay trong ứng dụng.
@@ -71,6 +76,7 @@ lib/
   data/
     models.dart           Routine, RoutineItem, CustomCard, DayProgress, AppData
     card_catalog.dart     thẻ có sẵn, biểu tượng lịch trình, nhãn dán
+    routine_templates.dart  lịch trình mẫu
     app_repository.dart   AppData <-> một tài liệu JSON trong key-value storage
     image_store*.dart     ảnh: file trên điện thoại, bộ nhớ trình duyệt trên web
   state/
@@ -89,7 +95,7 @@ lib/
   trình, tên thẻ, tiến độ của một ngày). Ảnh là các file riêng.
 - **Hình vẽ**: SVG của [Twemoji](https://github.com/jdecked/twemoji), hiển
   thị bằng `flutter_svg`. `tool/asset_map.json` cho biết file nào ứng với
-  emoji nào.
+  emoji nào, và `tool/fetch_twemoji.py` tải hình cho các id mới.
 - **Icon**: do `tool/make_icon.py` vẽ; script này cũng xuất mọi kích thước
   icon cho Android, iOS và web.
 - **Âm thanh**: do `tool/make_notes.py` tổng hợp (hai bộ 8 nốt và một hồi
@@ -101,7 +107,7 @@ lib/
 flutter pub get
 flutter run                 # điện thoại, tablet hoặc emulator đang kết nối
 flutter run -d chrome       # trong trình duyệt
-flutter test                # 63 unit test và widget test
+flutter test                # 73 unit test và widget test
 ```
 
 CI (`.github/workflows/ci.yml`) kiểm tra định dạng mã, chạy analyze, chạy
@@ -120,6 +126,8 @@ màn hình, từ điện thoại 320 px tới tablet nằm ngang.
 `test/app_repository_test.dart` kiểm tra việc lưu trữ, kể cả khi dữ liệu bị
 hỏng. `test/sound_service_test.dart` kiểm tra mỗi thẻ và mỗi bạn thú luôn
 phát đúng một nốt cố định, và mọi file âm thanh đều có trong ứng dụng.
+`test/card_catalog_test.dart` kiểm tra danh mục: id không trùng, thẻ, biểu
+tượng và bạn thú nào cũng có hình, lịch trình mẫu chỉ dùng thẻ có thật.
 
 ## Tình trạng
 

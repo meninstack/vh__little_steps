@@ -7,6 +7,7 @@ import '../../core/theme.dart';
 import '../../data/card_catalog.dart';
 import '../../data/card_resolver.dart';
 import '../../data/models.dart';
+import '../../data/routine_templates.dart';
 import '../../l10n/app_localizations.dart';
 import '../../state/app_controller.dart';
 import '../../widgets/card_art.dart';
@@ -77,6 +78,19 @@ class _RoutinesTab extends ConsumerWidget {
     );
   }
 
+  Future<void> _addFromTemplate(BuildContext context, WidgetRef ref) async {
+    final presetKey = await showModalBottomSheet<String>(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) => const _TemplateSheet(),
+    );
+    if (presetKey == null || !context.mounted) return;
+    final routineId = ref
+        .read(appControllerProvider.notifier)
+        .addRoutineFromTemplate(presetKey);
+    if (routineId != null) _open(context, routineId);
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
@@ -114,18 +128,73 @@ class _RoutinesTab extends ConsumerWidget {
             ),
           ),
         const SizedBox(height: 6),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: FilledButton.icon(
-            onPressed: () => _open(
-              context,
-              ref.read(appControllerProvider.notifier).addRoutine(),
+        Wrap(
+          spacing: 10,
+          runSpacing: 10,
+          children: [
+            FilledButton.icon(
+              onPressed: () => _open(
+                context,
+                ref.read(appControllerProvider.notifier).addRoutine(),
+              ),
+              icon: const Icon(Icons.add_rounded),
+              label: Text(l10n.newRoutine),
             ),
-            icon: const Icon(Icons.add_rounded),
-            label: Text(l10n.newRoutine),
-          ),
+            OutlinedButton.icon(
+              onPressed: () => _addFromTemplate(context, ref),
+              icon: const Icon(Icons.auto_awesome_rounded),
+              label: Text(l10n.addFromTemplate),
+            ),
+          ],
         ),
       ],
+    );
+  }
+}
+
+/// Lists the ready-made routines and pops with the chosen one's preset key.
+class _TemplateSheet extends StatelessWidget {
+  const _TemplateSheet();
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final languageCode = Localizations.localeOf(context).languageCode;
+
+    return SafeArea(
+      child: ListView(
+        shrinkWrap: true,
+        padding: const EdgeInsets.fromLTRB(8, 20, 8, 16),
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+            child: Text(l10n.templatesTitle, style: theme.textTheme.titleLarge),
+          ),
+          for (final template in routineTemplates)
+            ListTile(
+              leading: SvgPicture.asset(
+                routineIconAsset(template.iconId),
+                width: 40,
+                height: 40,
+                excludeFromSemantics: true,
+              ),
+              title: Text(
+                presetName(template.presetKey, l10n) ?? template.presetKey,
+                style: theme.textTheme.titleMedium,
+              ),
+              subtitle: Text(
+                [
+                  for (final cardId in template.cardIds)
+                    builtInCardsById[cardId]?.label(languageCode) ?? cardId,
+                ].join(' · '),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              onTap: () => Navigator.of(context).pop(template.presetKey),
+            ),
+        ],
+      ),
     );
   }
 }

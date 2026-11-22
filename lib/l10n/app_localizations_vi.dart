@@ -39,6 +39,21 @@ class AppLocalizationsVi extends AppLocalizations {
   String get stickerLocked => 'Làm xong một lịch trình để gặp bạn này';
 
   @override
+  String get stickerSetFarm => 'Nhà và nông trại';
+
+  @override
+  String get stickerSetForest => 'Trong rừng';
+
+  @override
+  String get stickerSetWild => 'Thú hoang dã';
+
+  @override
+  String get stickerSetSea => 'Dưới biển';
+
+  @override
+  String get stickerSetTiny => 'Nhỏ bé và kỳ diệu';
+
+  @override
   String totalStars(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
@@ -121,7 +136,34 @@ class AppLocalizationsVi extends AppLocalizations {
   String get presetEvening => 'Buổi tối';
 
   @override
+  String get presetAfterSchool => 'Đi học về';
+
+  @override
+  String get presetGoingOut => 'Trước khi ra ngoài';
+
+  @override
+  String get presetMealtime => 'Giờ ăn';
+
+  @override
+  String get presetBedtime => 'Giờ đi ngủ';
+
+  @override
+  String get presetWeekend => 'Cuối tuần';
+
+  @override
+  String get presetChores => 'Việc nhà';
+
+  @override
+  String get presetDoctor => 'Đi khám bác sĩ';
+
+  @override
   String get newRoutine => 'Lịch trình mới';
+
+  @override
+  String get addFromTemplate => 'Thêm lịch trình mẫu';
+
+  @override
+  String get templatesTitle => 'Lịch trình mẫu';
 
   @override
   String taskCount(int count) {
@@ -181,6 +223,12 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get groupHome => 'Ở nhà & giờ ngủ';
+
+  @override
+  String get groupOutside => 'Ra ngoài';
+
+  @override
+  String get groupManners => 'Cư xử';
 
   @override
   String get groupCustom => 'Thẻ của tôi';

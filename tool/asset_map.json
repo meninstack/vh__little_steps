@@ -2,26 +2,46 @@
   "cards": {
     "wake_up": "23f0", "make_bed": "1f6cf", "toilet": "1f6bd", "brush_teeth": "1faa5",
     "wash_face": "1fae7", "get_dressed": "1f455", "comb_hair": "1faae", "breakfast": "1f373",
-    "drink_milk": "1f95b",
+    "drink_milk": "1f95b", "open_curtains": "1fa9f", "put_on_socks": "1f9e6", "look_in_mirror": "1fa9e",
     "pack_bag": "1f392", "put_on_shoes": "1f45f", "wear_hat": "1f9e2", "go_to_school": "1f3eb",
     "homework": "270f", "read_book": "1f4d6", "draw": "1f3a8", "practice_music": "1f3b9",
-    "say_hello": "1f44b",
+    "say_hello": "1f44b", "practice_writing": "1f4dd", "count_numbers": "1f522", "learn_letters": "1f524",
+    "puzzle": "1f9e9", "sing": "1f3a4", "cut_and_paste": "2702", "school_bus": "1f68c",
+    "lunch_box": "1f371",
     "wash_hands": "1f9fc", "eat_lunch": "1f35a", "eat_dinner": "1f372", "eat_fruit": "1f34e",
     "drink_water": "1f4a7", "take_bath": "1f6c1", "wash_hair": "1f9f4", "take_medicine": "1f48a",
-    "nap": "1f634",
+    "nap": "1f634", "eat_vegetables": "1f966", "snack": "1f36a", "blow_nose": "1f927",
+    "wash_feet": "1f9b6", "wear_glasses": "1f453", "haircut": "1f487", "see_doctor": "1fa7a",
+    "see_dentist": "1f9b7", "take_temperature": "1f321",
     "tidy_toys": "1f9f8", "water_plants": "1fab4", "feed_pet": "1f9b4", "set_table": "1f37d",
     "laundry_basket": "1f9fa", "play_outside": "26bd", "exercise": "1f938", "screen_time": "1f4fa",
-    "story_time": "1f4da", "hug": "1f917", "turn_off_light": "1f4a1", "go_to_sleep": "1f6cc"
+    "story_time": "1f4da", "hug": "1f917", "turn_off_light": "1f4a1", "go_to_sleep": "1f6cc",
+    "sweep": "1f9f9", "take_out_trash": "1f5d1", "wash_dishes": "1f9fd", "fold_clothes": "1f456",
+    "put_away_sandals": "1fa74", "feed_fish": "1f41f", "listen_to_music": "1f3b5", "call_grandparents": "1f4de",
+    "say_good_night": "1f4a4",
+    "go_to_park": "1f6dd", "ride_bike": "1f6b2", "swim": "1f3ca", "go_shopping": "1f6d2",
+    "visit_grandparents": "1f475", "wear_helmet": "26d1", "seat_belt": "1f697", "hold_hands": "1f91d",
+    "cross_street": "1f6a6", "umbrella": "2614", "wear_mask": "1f637",
+    "say_thank_you": "1f64f", "say_sorry": "1f97a", "share": "1f381", "take_turns": "23f3",
+    "listen": "1f442", "quiet_voice": "1f92b", "help": "1f932", "deep_breath": "1f9d8",
+    "ask_first": "1f64b"
   },
   "icons": {
     "sun": "1f31e", "moon": "1f319", "school": "1f3eb", "house": "1f3e0",
-    "star": "2b50", "rainbow": "1f308", "rocket": "1f680", "balloon": "1f388"
+    "star": "2b50", "rainbow": "1f308", "rocket": "1f680", "balloon": "1f388",
+    "meal": "1f37d", "bath": "1f6c1", "books": "1f4da", "backpack": "1f392",
+    "ball": "26bd", "tree": "1f333", "car": "1f697", "heart": "2764"
   },
   "stickers": {
     "dog": "1f436", "cat": "1f431", "rabbit": "1f430", "panda": "1f43c", "fox": "1f98a",
     "bear": "1f43b", "koala": "1f428", "tiger": "1f42f", "lion": "1f981", "cow": "1f42e",
     "pig": "1f437", "frog": "1f438", "monkey": "1f435", "chick": "1f425", "penguin": "1f427",
     "owl": "1f989", "unicorn": "1f984", "turtle": "1f422", "dolphin": "1f42c", "whale": "1f433",
-    "butterfly": "1f98b", "ladybug": "1f41e", "dinosaur": "1f995", "elephant": "1f418"
+    "butterfly": "1f98b", "ladybug": "1f41e", "dinosaur": "1f995", "elephant": "1f418",
+    "hamster": "1f439", "mouse": "1f42d", "horse": "1f434", "sheep": "1f411", "duck": "1f986",
+    "rooster": "1f413", "buffalo": "1f403", "giraffe": "1f992", "zebra": "1f993", "hippo": "1f99b",
+    "kangaroo": "1f998", "sloth": "1f9a5", "hedgehog": "1f994", "squirrel": "1f43f", "deer": "1f98c",
+    "octopus": "1f419", "crab": "1f980", "fish": "1f420", "shark": "1f988", "seal": "1f9ad",
+    "snail": "1f40c", "bee": "1f41d", "parrot": "1f99c", "flamingo": "1f9a9"
   }
 }

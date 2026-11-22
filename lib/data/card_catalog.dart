@@ -1,10 +1,12 @@
 /// Built-in content: task cards, routine icons and collectible stickers.
 ///
 /// Artwork is Twemoji (CC-BY 4.0), copied into `assets/` under these ids.
-/// `tool/asset_map.json` records which emoji each file came from.
+/// `tool/asset_map.json` records which emoji each file came from, and
+/// `tool/fetch_twemoji.py` downloads the files for new ids.
 library;
 
-enum CardGroup { morning, school, care, home }
+/// The tabs of the card picker, in order. Each group has its own card colour.
+enum CardGroup { morning, school, care, home, outside, manners }
 
 class BuiltInCard {
   const BuiltInCard(this.id, this.group, {required this.en, required this.vi});
@@ -60,7 +62,24 @@ const List<BuiltInCard> builtInCards = [
     en: 'Drink milk',
     vi: 'Uống sữa',
   ),
-
+  BuiltInCard(
+    'open_curtains',
+    CardGroup.morning,
+    en: 'Open the curtains',
+    vi: 'Mở rèm cửa',
+  ),
+  BuiltInCard(
+    'put_on_socks',
+    CardGroup.morning,
+    en: 'Put on socks',
+    vi: 'Mang vớ',
+  ),
+  BuiltInCard(
+    'look_in_mirror',
+    CardGroup.morning,
+    en: 'Look in the mirror',
+    vi: 'Soi gương',
+  ),
   // School
   BuiltInCard('pack_bag', CardGroup.school, en: 'Pack my bag', vi: 'Soạn cặp'),
   BuiltInCard(
@@ -91,7 +110,44 @@ const List<BuiltInCard> builtInCards = [
     vi: 'Tập đàn',
   ),
   BuiltInCard('say_hello', CardGroup.school, en: 'Say hello', vi: 'Chào hỏi'),
-
+  BuiltInCard(
+    'practice_writing',
+    CardGroup.school,
+    en: 'Practice writing',
+    vi: 'Tập viết',
+  ),
+  BuiltInCard(
+    'count_numbers',
+    CardGroup.school,
+    en: 'Count numbers',
+    vi: 'Tập đếm',
+  ),
+  BuiltInCard(
+    'learn_letters',
+    CardGroup.school,
+    en: 'Learn letters',
+    vi: 'Học chữ',
+  ),
+  BuiltInCard('puzzle', CardGroup.school, en: 'Do a puzzle', vi: 'Xếp hình'),
+  BuiltInCard('sing', CardGroup.school, en: 'Sing a song', vi: 'Hát'),
+  BuiltInCard(
+    'cut_and_paste',
+    CardGroup.school,
+    en: 'Cut and paste',
+    vi: 'Cắt dán',
+  ),
+  BuiltInCard(
+    'school_bus',
+    CardGroup.school,
+    en: 'Take the bus',
+    vi: 'Đi xe buýt',
+  ),
+  BuiltInCard(
+    'lunch_box',
+    CardGroup.school,
+    en: 'Pack lunch box',
+    vi: 'Soạn hộp cơm',
+  ),
   // Meals & care
   BuiltInCard('wash_hands', CardGroup.care, en: 'Wash hands', vi: 'Rửa tay'),
   BuiltInCard('eat_lunch', CardGroup.care, en: 'Eat lunch', vi: 'Ăn trưa'),
@@ -112,7 +168,40 @@ const List<BuiltInCard> builtInCards = [
     vi: 'Uống thuốc',
   ),
   BuiltInCard('nap', CardGroup.care, en: 'Take a nap', vi: 'Ngủ trưa'),
-
+  BuiltInCard(
+    'eat_vegetables',
+    CardGroup.care,
+    en: 'Eat vegetables',
+    vi: 'Ăn rau',
+  ),
+  BuiltInCard('snack', CardGroup.care, en: 'Have a snack', vi: 'Ăn nhẹ'),
+  BuiltInCard('blow_nose', CardGroup.care, en: 'Blow nose', vi: 'Xì mũi'),
+  BuiltInCard('wash_feet', CardGroup.care, en: 'Wash feet', vi: 'Rửa chân'),
+  BuiltInCard(
+    'wear_glasses',
+    CardGroup.care,
+    en: 'Put on glasses',
+    vi: 'Đeo kính',
+  ),
+  BuiltInCard('haircut', CardGroup.care, en: 'Get a haircut', vi: 'Cắt tóc'),
+  BuiltInCard(
+    'see_doctor',
+    CardGroup.care,
+    en: 'See the doctor',
+    vi: 'Đi khám bác sĩ',
+  ),
+  BuiltInCard(
+    'see_dentist',
+    CardGroup.care,
+    en: 'See the dentist',
+    vi: 'Đi khám răng',
+  ),
+  BuiltInCard(
+    'take_temperature',
+    CardGroup.care,
+    en: 'Take temperature',
+    vi: 'Đo nhiệt độ',
+  ),
   // Home & bedtime
   BuiltInCard(
     'tidy_toys',
@@ -171,6 +260,152 @@ const List<BuiltInCard> builtInCards = [
     vi: 'Tắt đèn',
   ),
   BuiltInCard('go_to_sleep', CardGroup.home, en: 'Go to sleep', vi: 'Đi ngủ'),
+  BuiltInCard('sweep', CardGroup.home, en: 'Sweep the floor', vi: 'Quét nhà'),
+  BuiltInCard(
+    'take_out_trash',
+    CardGroup.home,
+    en: 'Take out the trash',
+    vi: 'Đổ rác',
+  ),
+  BuiltInCard(
+    'wash_dishes',
+    CardGroup.home,
+    en: 'Wash the dishes',
+    vi: 'Rửa chén',
+  ),
+  BuiltInCard(
+    'fold_clothes',
+    CardGroup.home,
+    en: 'Fold clothes',
+    vi: 'Xếp quần áo',
+  ),
+  BuiltInCard(
+    'put_away_sandals',
+    CardGroup.home,
+    en: 'Put shoes away',
+    vi: 'Cất dép',
+  ),
+  BuiltInCard(
+    'feed_fish',
+    CardGroup.home,
+    en: 'Feed the fish',
+    vi: 'Cho cá ăn',
+  ),
+  BuiltInCard(
+    'listen_to_music',
+    CardGroup.home,
+    en: 'Listen to music',
+    vi: 'Nghe nhạc',
+  ),
+  BuiltInCard(
+    'call_grandparents',
+    CardGroup.home,
+    en: 'Call grandparents',
+    vi: 'Gọi cho ông bà',
+  ),
+  BuiltInCard(
+    'say_good_night',
+    CardGroup.home,
+    en: 'Say good night',
+    vi: 'Chúc ngủ ngon',
+  ),
+  // Out and about
+  BuiltInCard(
+    'go_to_park',
+    CardGroup.outside,
+    en: 'Go to the park',
+    vi: 'Đi công viên',
+  ),
+  BuiltInCard(
+    'ride_bike',
+    CardGroup.outside,
+    en: 'Ride a bike',
+    vi: 'Đi xe đạp',
+  ),
+  BuiltInCard('swim', CardGroup.outside, en: 'Go swimming', vi: 'Đi bơi'),
+  BuiltInCard(
+    'go_shopping',
+    CardGroup.outside,
+    en: 'Go shopping',
+    vi: 'Đi siêu thị',
+  ),
+  BuiltInCard(
+    'visit_grandparents',
+    CardGroup.outside,
+    en: 'Visit grandparents',
+    vi: 'Thăm ông bà',
+  ),
+  BuiltInCard(
+    'wear_helmet',
+    CardGroup.outside,
+    en: 'Wear a helmet',
+    vi: 'Đội mũ bảo hiểm',
+  ),
+  BuiltInCard(
+    'seat_belt',
+    CardGroup.outside,
+    en: 'Fasten seat belt',
+    vi: 'Thắt dây an toàn',
+  ),
+  BuiltInCard(
+    'hold_hands',
+    CardGroup.outside,
+    en: 'Hold hands',
+    vi: 'Nắm tay ba mẹ',
+  ),
+  BuiltInCard(
+    'cross_street',
+    CardGroup.outside,
+    en: 'Wait for green light',
+    vi: 'Chờ đèn xanh',
+  ),
+  BuiltInCard(
+    'umbrella',
+    CardGroup.outside,
+    en: 'Take an umbrella',
+    vi: 'Mang dù',
+  ),
+  BuiltInCard(
+    'wear_mask',
+    CardGroup.outside,
+    en: 'Wear a mask',
+    vi: 'Đeo khẩu trang',
+  ),
+  // Kind words
+  BuiltInCard(
+    'say_thank_you',
+    CardGroup.manners,
+    en: 'Say thank you',
+    vi: 'Nói cảm ơn',
+  ),
+  BuiltInCard(
+    'say_sorry',
+    CardGroup.manners,
+    en: 'Say sorry',
+    vi: 'Nói xin lỗi',
+  ),
+  BuiltInCard('share', CardGroup.manners, en: 'Share', vi: 'Chia sẻ'),
+  BuiltInCard(
+    'take_turns',
+    CardGroup.manners,
+    en: 'Wait my turn',
+    vi: 'Chờ đến lượt',
+  ),
+  BuiltInCard('listen', CardGroup.manners, en: 'Listen', vi: 'Lắng nghe'),
+  BuiltInCard(
+    'quiet_voice',
+    CardGroup.manners,
+    en: 'Use a quiet voice',
+    vi: 'Nói khẽ',
+  ),
+  BuiltInCard('help', CardGroup.manners, en: 'Help out', vi: 'Giúp đỡ'),
+  BuiltInCard(
+    'deep_breath',
+    CardGroup.manners,
+    en: 'Take a deep breath',
+    vi: 'Hít thở sâu',
+  ),
+  BuiltInCard('ask_first', CardGroup.manners, en: 'Ask first', vi: 'Xin phép'),
 ];
 
 final Map<String, BuiltInCard> builtInCardsById = {
@@ -192,6 +427,14 @@ const List<String> routineIconIds = [
   'rainbow',
   'rocket',
   'balloon',
+  'meal',
+  'bath',
+  'books',
+  'backpack',
+  'ball',
+  'tree',
+  'car',
+  'heart',
 ];
 
 const String defaultRoutineIconId = 'star';
@@ -200,11 +443,15 @@ String routineIconAsset(String iconId) => routineIconIds.contains(iconId)
     ? 'assets/icons/$iconId.svg'
     : 'assets/icons/$defaultRoutineIconId.svg';
 
+/// The pages of the sticker book, in order.
+enum StickerSet { farm, forest, wild, sea, tiny }
+
 /// An animal friend a child collects by finishing a routine.
 class Sticker {
-  const Sticker(this.id, {required this.en, required this.vi});
+  const Sticker(this.id, this.group, {required this.en, required this.vi});
 
   final String id;
+  final StickerSet group;
   final String en;
   final String vi;
 
@@ -214,32 +461,66 @@ class Sticker {
 }
 
 const List<Sticker> stickers = [
-  Sticker('dog', en: 'Puppy', vi: 'Chó con'),
-  Sticker('cat', en: 'Kitten', vi: 'Mèo con'),
-  Sticker('rabbit', en: 'Bunny', vi: 'Thỏ'),
-  Sticker('panda', en: 'Panda', vi: 'Gấu trúc'),
-  Sticker('fox', en: 'Fox', vi: 'Cáo'),
-  Sticker('bear', en: 'Bear', vi: 'Gấu'),
-  Sticker('koala', en: 'Koala', vi: 'Koala'),
-  Sticker('tiger', en: 'Tiger', vi: 'Hổ'),
-  Sticker('lion', en: 'Lion', vi: 'Sư tử'),
-  Sticker('cow', en: 'Cow', vi: 'Bò'),
-  Sticker('pig', en: 'Piggy', vi: 'Heo'),
-  Sticker('frog', en: 'Frog', vi: 'Ếch'),
-  Sticker('monkey', en: 'Monkey', vi: 'Khỉ'),
-  Sticker('chick', en: 'Chick', vi: 'Gà con'),
-  Sticker('penguin', en: 'Penguin', vi: 'Chim cánh cụt'),
-  Sticker('owl', en: 'Owl', vi: 'Cú mèo'),
-  Sticker('unicorn', en: 'Unicorn', vi: 'Kỳ lân'),
-  Sticker('turtle', en: 'Turtle', vi: 'Rùa'),
-  Sticker('dolphin', en: 'Dolphin', vi: 'Cá heo'),
-  Sticker('whale', en: 'Whale', vi: 'Cá voi'),
-  Sticker('butterfly', en: 'Butterfly', vi: 'Bướm'),
-  Sticker('ladybug', en: 'Ladybug', vi: 'Bọ rùa'),
-  Sticker('dinosaur', en: 'Dinosaur', vi: 'Khủng long'),
-  Sticker('elephant', en: 'Elephant', vi: 'Voi'),
+  // Home and farm
+  Sticker('dog', StickerSet.farm, en: 'Puppy', vi: 'Chó con'),
+  Sticker('cat', StickerSet.farm, en: 'Kitten', vi: 'Mèo con'),
+  Sticker('rabbit', StickerSet.farm, en: 'Bunny', vi: 'Thỏ'),
+  Sticker('hamster', StickerSet.farm, en: 'Hamster', vi: 'Hamster'),
+  Sticker('mouse', StickerSet.farm, en: 'Mouse', vi: 'Chuột nhắt'),
+  Sticker('chick', StickerSet.farm, en: 'Chick', vi: 'Gà con'),
+  Sticker('rooster', StickerSet.farm, en: 'Rooster', vi: 'Gà trống'),
+  Sticker('duck', StickerSet.farm, en: 'Duck', vi: 'Vịt'),
+  Sticker('pig', StickerSet.farm, en: 'Piggy', vi: 'Heo'),
+  Sticker('cow', StickerSet.farm, en: 'Cow', vi: 'Bò'),
+  Sticker('buffalo', StickerSet.farm, en: 'Buffalo', vi: 'Trâu'),
+  Sticker('horse', StickerSet.farm, en: 'Horse', vi: 'Ngựa'),
+  Sticker('sheep', StickerSet.farm, en: 'Sheep', vi: 'Cừu'),
+  // In the forest
+  Sticker('fox', StickerSet.forest, en: 'Fox', vi: 'Cáo'),
+  Sticker('bear', StickerSet.forest, en: 'Bear', vi: 'Gấu'),
+  Sticker('panda', StickerSet.forest, en: 'Panda', vi: 'Gấu trúc'),
+  Sticker('koala', StickerSet.forest, en: 'Koala', vi: 'Koala'),
+  Sticker('monkey', StickerSet.forest, en: 'Monkey', vi: 'Khỉ'),
+  Sticker('owl', StickerSet.forest, en: 'Owl', vi: 'Cú mèo'),
+  Sticker('deer', StickerSet.forest, en: 'Deer', vi: 'Hươu'),
+  Sticker('squirrel', StickerSet.forest, en: 'Squirrel', vi: 'Sóc'),
+  Sticker('hedgehog', StickerSet.forest, en: 'Hedgehog', vi: 'Nhím'),
+  Sticker('sloth', StickerSet.forest, en: 'Sloth', vi: 'Con lười'),
+  // Wild animals
+  Sticker('tiger', StickerSet.wild, en: 'Tiger', vi: 'Hổ'),
+  Sticker('lion', StickerSet.wild, en: 'Lion', vi: 'Sư tử'),
+  Sticker('elephant', StickerSet.wild, en: 'Elephant', vi: 'Voi'),
+  Sticker('giraffe', StickerSet.wild, en: 'Giraffe', vi: 'Hươu cao cổ'),
+  Sticker('zebra', StickerSet.wild, en: 'Zebra', vi: 'Ngựa vằn'),
+  Sticker('hippo', StickerSet.wild, en: 'Hippo', vi: 'Hà mã'),
+  Sticker('kangaroo', StickerSet.wild, en: 'Kangaroo', vi: 'Chuột túi'),
+  // In the sea
+  Sticker('dolphin', StickerSet.sea, en: 'Dolphin', vi: 'Cá heo'),
+  Sticker('whale', StickerSet.sea, en: 'Whale', vi: 'Cá voi'),
+  Sticker('turtle', StickerSet.sea, en: 'Turtle', vi: 'Rùa'),
+  Sticker('penguin', StickerSet.sea, en: 'Penguin', vi: 'Chim cánh cụt'),
+  Sticker('octopus', StickerSet.sea, en: 'Octopus', vi: 'Bạch tuộc'),
+  Sticker('crab', StickerSet.sea, en: 'Crab', vi: 'Cua'),
+  Sticker('fish', StickerSet.sea, en: 'Fish', vi: 'Cá'),
+  Sticker('shark', StickerSet.sea, en: 'Shark', vi: 'Cá mập'),
+  Sticker('seal', StickerSet.sea, en: 'Seal', vi: 'Hải cẩu'),
+  // Small and magical
+  Sticker('butterfly', StickerSet.tiny, en: 'Butterfly', vi: 'Bướm'),
+  Sticker('ladybug', StickerSet.tiny, en: 'Ladybug', vi: 'Bọ rùa'),
+  Sticker('bee', StickerSet.tiny, en: 'Bee', vi: 'Ong'),
+  Sticker('snail', StickerSet.tiny, en: 'Snail', vi: 'Ốc sên'),
+  Sticker('frog', StickerSet.tiny, en: 'Frog', vi: 'Ếch'),
+  Sticker('parrot', StickerSet.tiny, en: 'Parrot', vi: 'Vẹt'),
+  Sticker('flamingo', StickerSet.tiny, en: 'Flamingo', vi: 'Hồng hạc'),
+  Sticker('unicorn', StickerSet.tiny, en: 'Unicorn', vi: 'Kỳ lân'),
+  Sticker('dinosaur', StickerSet.tiny, en: 'Dinosaur', vi: 'Khủng long'),
 ];
 
 final Map<String, Sticker> stickersById = {
   for (final sticker in stickers) sticker.id: sticker,
 };
+
+List<Sticker> stickersIn(StickerSet group) => [
+  for (final sticker in stickers)
+    if (sticker.group == group) sticker,
+];
