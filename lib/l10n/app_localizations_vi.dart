@@ -13,6 +13,20 @@ class AppLocalizationsVi extends AppLocalizations {
   String get appTitle => 'Từng bước nhỏ';
 
   @override
+  String get welcomeIntro =>
+      'Bảng lịch trình bằng hình giúp bé tự làm các việc hằng ngày, từng bước một.';
+
+  @override
+  String get welcomePickRoutines => 'Chọn lịch trình để bắt đầu';
+
+  @override
+  String get welcomePickRoutinesHint =>
+      'Sau này bạn vẫn thêm, sửa hoặc xóa được trong khu vực ba mẹ.';
+
+  @override
+  String get welcomeStart => 'Bắt đầu';
+
+  @override
   String get commonCancel => 'Hủy';
 
   @override

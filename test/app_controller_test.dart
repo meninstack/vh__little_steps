@@ -42,6 +42,24 @@ void main() {
       expect(state().stickers, isEmpty);
     });
 
+    test('opens on the welcome screen until it is finished', () {
+      start();
+
+      expect(state().onboardingDone, isFalse);
+    });
+
+    test('the welcome keeps the chosen routines and adds new ones', () {
+      start();
+      final morning = state().routines.first;
+
+      controller().finishOnboarding({'bedtime', 'morning'});
+
+      expect(state().onboardingDone, isTrue);
+      expect(state().routines.map((r) => r.presetKey), ['morning', 'bedtime']);
+      expect(state().routines.first.id, morning.id);
+      expect(state().routines.last.items, isNotEmpty);
+    });
+
     test('starter routines only use cards that exist', () {
       start();
 
@@ -388,6 +406,15 @@ void main() {
   });
 
   group('saving', () {
+    test('data saved before the welcome screen existed skips it', () {
+      start();
+      final saved =
+          jsonDecode(jsonEncode(state().toJson())) as Map<String, dynamic>
+            ..remove('onboardingDone');
+
+      expect(AppData.fromJson(saved).onboardingDone, isTrue);
+    });
+
     test('every change is written, and survives a JSON round trip', () async {
       start();
       final routine = state().routines.first;

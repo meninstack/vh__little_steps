@@ -4,13 +4,14 @@ import '../../core/theme.dart';
 import '../../data/card_resolver.dart';
 import '../../l10n/app_localizations.dart';
 import '../../widgets/card_art.dart';
+import '../../widgets/pop_on_change.dart';
 
 /// One task on the child's board.
 ///
-/// Tapping the card plays its note; tapping the star marks it done. The two
-/// actions are separate targets so that playing with a card never completes
-/// the task by accident.
-class TaskTile extends StatelessWidget {
+/// Tapping the card plays its note and makes its picture pop; tapping the
+/// star marks it done. The two actions are separate targets so that playing
+/// with a card never completes the task by accident.
+class TaskTile extends StatefulWidget {
   const TaskTile({
     super.key,
     required this.card,
@@ -33,13 +34,29 @@ class TaskTile extends StatelessWidget {
   final VoidCallback onToggle;
 
   @override
+  State<TaskTile> createState() => _TaskTileState();
+}
+
+class _TaskTileState extends State<TaskTile> {
+  /// Counts taps on the card, so its picture pops on each one.
+  int _plays = 0;
+
+  void _play() {
+    setState(() => _plays++);
+    widget.onPlay();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
+    final card = widget.card;
+    final done = widget.done;
+    final compact = widget.compact;
 
     final star = StarButton(
       done: done,
-      onPressed: onToggle,
+      onPressed: widget.onToggle,
       tooltip: done
           ? l10n.semanticMarkNotDone(card.label)
           : l10n.semanticMarkDone(card.label),
@@ -61,7 +78,7 @@ class TaskTile extends StatelessWidget {
       excludeSemantics: true,
       child: InkWell(
         borderRadius: BorderRadius.circular(25),
-        onTap: onPlay,
+        onTap: _play,
         child: body,
       ),
     );
@@ -74,7 +91,12 @@ class TaskTile extends StatelessWidget {
           children: [
             Expanded(
               child: playArea(
-                _CompactBody(card: card, order: order, label: label),
+                _CompactBody(
+                  card: card,
+                  order: widget.order,
+                  plays: _plays,
+                  label: label,
+                ),
               ),
             ),
             Padding(padding: const EdgeInsets.only(right: 12), child: star),
@@ -93,7 +115,14 @@ class TaskTile extends StatelessWidget {
           child: _TileSurface(
             card: card,
             done: done,
-            child: playArea(_TallBody(card: card, order: order, label: label)),
+            child: playArea(
+              _TallBody(
+                card: card,
+                order: widget.order,
+                plays: _plays,
+                label: label,
+              ),
+            ),
           ),
         ),
         Align(alignment: Alignment.bottomCenter, child: star),
@@ -134,11 +163,15 @@ class _CompactBody extends StatelessWidget {
   const _CompactBody({
     required this.card,
     required this.order,
+    required this.plays,
     required this.label,
   });
 
   final ResolvedCard card;
   final int order;
+
+  /// How many times the card has been tapped; the picture pops on each.
+  final int plays;
   final Widget label;
 
   @override
@@ -149,7 +182,10 @@ class _CompactBody extends StatelessWidget {
         children: [
           _OrderBadge(order: order),
           const SizedBox(width: 10),
-          CardArt(card: card, size: 68),
+          PopOnChange(
+            trigger: plays,
+            child: CardArt(card: card, size: 68),
+          ),
           const SizedBox(width: 14),
           Expanded(child: label),
         ],
@@ -162,11 +198,15 @@ class _TallBody extends StatelessWidget {
   const _TallBody({
     required this.card,
     required this.order,
+    required this.plays,
     required this.label,
   });
 
   final ResolvedCard card;
   final int order;
+
+  /// How many times the card has been tapped; the picture pops on each.
+  final int plays;
   final Widget label;
 
   @override
@@ -182,9 +222,12 @@ class _TallBody extends StatelessWidget {
               Expanded(
                 child: LayoutBuilder(
                   builder: (context, constraints) => Center(
-                    child: CardArt(
-                      card: card,
-                      size: constraints.biggest.shortestSide.clamp(40, 100),
+                    child: PopOnChange(
+                      trigger: plays,
+                      child: CardArt(
+                        card: card,
+                        size: constraints.biggest.shortestSide.clamp(40, 100),
+                      ),
                     ),
                   ),
                 ),

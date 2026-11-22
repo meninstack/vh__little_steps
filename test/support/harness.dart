@@ -8,6 +8,7 @@ import 'package:little_steps/core/id_generator.dart';
 import 'package:little_steps/data/app_repository.dart';
 import 'package:little_steps/data/image_store.dart';
 import 'package:little_steps/data/models.dart';
+import 'package:little_steps/features/welcome/welcome_screen.dart';
 import 'package:little_steps/services/sound_service.dart';
 import 'package:little_steps/state/providers.dart';
 import 'package:material_ui/material_ui.dart';
@@ -56,11 +57,16 @@ const Size phoneSize = Size(390, 844);
 const Size tabletSize = Size(1180, 820);
 
 /// Starts the whole app on a screen of [size] and waits for it to settle.
+///
+/// A new installation opens on the welcome screen. Most tests are about what
+/// comes after it, so it is accepted as it stands unless [finishWelcome] is
+/// false.
 Future<void> pumpApp(
   WidgetTester tester,
   TestEnvironment environment, {
   Size size = phoneSize,
   List<Override> extraOverrides = const [],
+  bool finishWelcome = true,
 }) async {
   tester.view.physicalSize = size;
   tester.view.devicePixelRatio = 1;
@@ -73,6 +79,12 @@ Future<void> pumpApp(
     ),
   );
   await tester.pumpAndSettle();
+
+  final start = find.byKey(WelcomeScreen.startButtonKey);
+  if (finishWelcome && start.evaluate().isNotEmpty) {
+    await tester.tap(start);
+    await tester.pumpAndSettle();
+  }
 }
 
 /// Answers the multiplication question and lands in the parent area.

@@ -19,8 +19,8 @@ không tài khoản, không thu thập dữ liệu.
 **Dành cho trẻ**
 
 - Mỗi việc là một thẻ lớn, xếp theo thứ tự, có số, hình và tên.
-- Chạm vào thẻ để nghe nốt nhạc riêng của thẻ đó. Chạm vào ngôi sao của thẻ
-  để đánh dấu đã xong.
+- Chạm vào thẻ để nghe nốt nhạc riêng của thẻ đó, hình trên thẻ nảy lên
+  theo. Chạm vào ngôi sao của thẻ để đánh dấu đã xong.
 - Thanh tiến độ đầy dần theo số sao trẻ nhận được.
 - Làm xong một lịch trình, trẻ được chúc mừng bằng một hồi chuông và có thêm
   một bạn thú mới trong sổ nhãn dán (có 48 bạn để sưu tầm, chia thành năm
@@ -31,6 +31,8 @@ không tài khoản, không thu thập dữ liệu.
 
 **Dành cho ba mẹ** (phải trả lời một phép nhân mới vào được)
 
+- Lần mở đầu tiên có màn hình chào: chọn ngôn ngữ và các lịch trình mẫu để
+  bắt đầu.
 - Nhiều lịch trình, mỗi lịch trình có tên và biểu tượng riêng (16 biểu
   tượng). Buổi sáng và Buổi tối có sẵn từ đầu.
 - Chín lịch trình mẫu để thêm nhanh rồi sửa lại theo ý: buổi sáng, buổi tối,
@@ -83,6 +85,7 @@ lib/
     app_controller.dart   mọi quy tắc của ứng dụng, gói trong một Riverpod Notifier
     providers.dart        đồng hồ, số ngẫu nhiên, lưu trữ, âm thanh (thay thế được)
   services/               phát âm thanh, chọn ảnh
+  features/welcome/       màn hình chào lần đầu
   features/child/         bảng việc, ô việc, chúc mừng, sổ nhãn dán
   features/parent/        cổng ba mẹ, lịch trình, sửa lịch trình, chọn thẻ, thẻ tự tạo, cài đặt
   l10n/                   app_en.arb, app_vi.arb (+ mã sinh tự động)
@@ -107,7 +110,7 @@ lib/
 flutter pub get
 flutter run                 # điện thoại, tablet hoặc emulator đang kết nối
 flutter run -d chrome       # trong trình duyệt
-flutter test                # 73 unit test và widget test
+flutter test                # 79 unit test và widget test
 ```
 
 CI (`.github/workflows/ci.yml`) kiểm tra định dạng mã, chạy analyze, chạy

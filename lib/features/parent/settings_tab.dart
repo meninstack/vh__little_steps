@@ -4,11 +4,10 @@ import 'package:material_ui/material_ui.dart';
 import '../../core/theme.dart';
 import '../../l10n/app_localizations.dart';
 import '../../state/app_controller.dart';
+import '../../widgets/language_picker.dart';
 
 class SettingsTab extends ConsumerWidget {
   const SettingsTab({super.key});
-
-  static const String _systemLanguage = 'system';
 
   Future<void> _confirmReset(BuildContext context, WidgetRef ref) async {
     final l10n = AppLocalizations.of(context);
@@ -40,9 +39,6 @@ class SettingsTab extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final controller = ref.read(appControllerProvider.notifier);
-    final localeCode = ref.watch(
-      appControllerProvider.select((data) => data.localeCode),
-    );
     final soundEnabled = ref.watch(
       appControllerProvider.select((data) => data.soundEnabled),
     );
@@ -59,27 +55,11 @@ class SettingsTab extends ConsumerWidget {
                 style: theme.textTheme.titleMedium,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 4, 16, 14),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(16, 4, 16, 14),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: SegmentedButton<String>(
-                  showSelectedIcon: false,
-                  segments: [
-                    ButtonSegment(
-                      value: _systemLanguage,
-                      label: Text(l10n.languageSystem),
-                    ),
-                    // Language names stay in their own language so they can
-                    // be found whatever the app is currently set to.
-                    const ButtonSegment(value: 'vi', label: Text('Tiếng Việt')),
-                    const ButtonSegment(value: 'en', label: Text('English')),
-                  ],
-                  selected: {localeCode ?? _systemLanguage},
-                  onSelectionChanged: (selection) => controller.setLocale(
-                    selection.first == _systemLanguage ? null : selection.first,
-                  ),
-                ),
+                child: LanguagePicker(),
               ),
             ),
           ],

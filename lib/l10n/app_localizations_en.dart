@@ -13,6 +13,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appTitle => 'Little Steps';
 
   @override
+  String get welcomeIntro =>
+      'A picture routine chart that helps your child do everyday tasks, one step at a time.';
+
+  @override
+  String get welcomePickRoutines => 'Choose routines to start with';
+
+  @override
+  String get welcomePickRoutinesHint =>
+      'You can add, change or remove them later in the grown-ups\' area.';
+
+  @override
+  String get welcomeStart => 'Get started';
+
+  @override
   String get commonCancel => 'Cancel';
 
   @override

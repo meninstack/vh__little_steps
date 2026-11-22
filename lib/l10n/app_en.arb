@@ -2,6 +2,10 @@
   "@@locale": "en",
 
   "appTitle": "Little Steps",
+  "welcomeIntro": "A picture routine chart that helps your child do everyday tasks, one step at a time.",
+  "welcomePickRoutines": "Choose routines to start with",
+  "welcomePickRoutinesHint": "You can add, change or remove them later in the grown-ups' area.",
+  "welcomeStart": "Get started",
 
   "commonCancel": "Cancel",
   "commonSave": "Save",

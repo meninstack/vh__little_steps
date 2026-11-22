@@ -152,6 +152,7 @@ class AppData {
     this.totalStars = 0,
     this.localeCode,
     this.soundEnabled = true,
+    this.onboardingDone = true,
   });
 
   factory AppData.fromJson(Map<String, dynamic> json) => AppData(
@@ -171,6 +172,9 @@ class AppData {
     totalStars: json['totalStars'] as int? ?? 0,
     localeCode: json['localeCode'] as String?,
     soundEnabled: json['soundEnabled'] as bool? ?? true,
+    // Data saved before the welcome screen existed belongs to a family
+    // that is already using the app.
+    onboardingDone: json['onboardingDone'] as bool? ?? true,
   );
 
   final List<Routine> routines;
@@ -188,6 +192,9 @@ class AppData {
 
   /// Whether taps play notes and a finished routine plays its tune.
   final bool soundEnabled;
+
+  /// False on a new installation until the welcome screen is finished.
+  final bool onboardingDone;
 
   Routine? routineById(String id) {
     for (final routine in routines) {
@@ -220,6 +227,7 @@ class AppData {
     int? totalStars,
     ValueGetter<String?>? localeCode,
     bool? soundEnabled,
+    bool? onboardingDone,
   }) => AppData(
     routines: routines ?? this.routines,
     customCards: customCards ?? this.customCards,
@@ -228,6 +236,7 @@ class AppData {
     totalStars: totalStars ?? this.totalStars,
     localeCode: localeCode != null ? localeCode() : this.localeCode,
     soundEnabled: soundEnabled ?? this.soundEnabled,
+    onboardingDone: onboardingDone ?? this.onboardingDone,
   );
 
   Map<String, dynamic> toJson() => {
@@ -239,5 +248,6 @@ class AppData {
     'totalStars': totalStars,
     'localeCode': ?localeCode,
     'soundEnabled': soundEnabled,
+    'onboardingDone': onboardingDone,
   };
 }

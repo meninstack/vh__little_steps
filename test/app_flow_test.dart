@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:little_steps/app.dart';
 import 'package:little_steps/data/models.dart';
+import 'package:little_steps/features/welcome/welcome_screen.dart';
 import 'package:little_steps/services/photo_picker.dart';
 import 'package:little_steps/state/app_controller.dart';
 import 'package:material_ui/material_ui.dart';
@@ -26,6 +27,65 @@ void main() {
   late TestEnvironment environment;
 
   setUp(() => environment = TestEnvironment());
+
+  group('welcome', () {
+    testWidgets('a new installation chooses its routines first', (
+      tester,
+    ) async {
+      await pumpApp(tester, environment, finishWelcome: false);
+
+      expect(find.text('Choose routines to start with'), findsOneWidget);
+      expect(find.text('Wake up'), findsNothing);
+
+      await tester.tap(find.text('Evening'));
+      await tester.ensureVisible(find.text('After school'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('After school'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(WelcomeScreen.startButtonKey));
+      await tester.pumpAndSettle();
+
+      final routines = appState(tester).routines;
+      expect(appState(tester).onboardingDone, isTrue);
+      expect(routines.map((r) => r.presetKey), ['morning', 'after_school']);
+      expect(find.text('Wake up'), findsOneWidget);
+      expect(find.text('After school'), findsOneWidget);
+    });
+
+    testWidgets('the start button waits until a routine is chosen', (
+      tester,
+    ) async {
+      await pumpApp(tester, environment, finishWelcome: false);
+
+      await tester.tap(find.text('Morning'));
+      await tester.tap(find.text('Evening'));
+      await tester.pumpAndSettle();
+
+      final start = tester.widget<FilledButton>(
+        find.byKey(WelcomeScreen.startButtonKey),
+      );
+      expect(start.onPressed, isNull);
+    });
+
+    testWidgets('a family already using the app goes straight to the board', (
+      tester,
+    ) async {
+      environment = TestEnvironment(
+        stored: const AppData(
+          routines: [],
+          progress: DayProgress(date: '2026-11-14'),
+        ),
+      );
+
+      await pumpApp(tester, environment, finishWelcome: false);
+
+      expect(find.text('Choose routines to start with'), findsNothing);
+      expect(
+        find.text('No routines yet. Ask a grown-up to make one!'),
+        findsOneWidget,
+      );
+    });
+  });
 
   group('child board', () {
     testWidgets('opens on the first routine with nothing done', (tester) async {

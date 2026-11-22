@@ -9,14 +9,30 @@ import '../../l10n/app_localizations.dart';
 import '../../services/sound_service.dart';
 import '../../state/app_controller.dart';
 import '../../state/providers.dart';
+import '../../widgets/pop_on_change.dart';
 
 /// The animal friends a child has collected, and the ones still to meet,
 /// one section for each [StickerSet].
-class StickerBookScreen extends ConsumerWidget {
+class StickerBookScreen extends ConsumerStatefulWidget {
   const StickerBookScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<StickerBookScreen> createState() => _StickerBookScreenState();
+}
+
+class _StickerBookScreenState extends ConsumerState<StickerBookScreen> {
+  /// Counts taps on each friend, so its picture pops on each one.
+  final Map<String, int> _taps = {};
+
+  void _play(Sticker sticker) {
+    setState(() => _taps[sticker.id] = (_taps[sticker.id] ?? 0) + 1);
+    if (!ref.read(appControllerProvider).soundEnabled) return;
+    final note = noteNumberForSticker(stickers.indexOf(sticker));
+    ref.read(soundServiceProvider).playNote(NoteSet.bell, note);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final languageCode = Localizations.localeOf(context).languageCode;
@@ -31,30 +47,26 @@ class StickerBookScreen extends ConsumerWidget {
         borderRadius: BorderRadius.circular(24),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
-          onTap: has && data.soundEnabled
-              ? () => ref
-                    .read(soundServiceProvider)
-                    .playNote(
-                      NoteSet.bell,
-                      noteNumberForSticker(stickers.indexOf(sticker)),
-                    )
-              : null,
+          onTap: has ? () => _play(sticker) : null,
           child: Padding(
             padding: const EdgeInsets.all(12),
             child: Column(
               children: [
                 Expanded(
-                  child: SvgPicture.asset(
-                    sticker.asset,
-                    excludeFromSemantics: true,
-                    // A flat silhouette hints at the friend without giving
-                    // the surprise away.
-                    colorFilter: has
-                        ? null
-                        : const ColorFilter.mode(
-                            Color(0xFFDCD3C0),
-                            BlendMode.srcIn,
-                          ),
+                  child: PopOnChange(
+                    trigger: _taps[sticker.id] ?? 0,
+                    child: SvgPicture.asset(
+                      sticker.asset,
+                      excludeFromSemantics: true,
+                      // A flat silhouette hints at the friend without giving
+                      // the surprise away.
+                      colorFilter: has
+                          ? null
+                          : const ColorFilter.mode(
+                              Color(0xFFDCD3C0),
+                              BlendMode.srcIn,
+                            ),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 6),

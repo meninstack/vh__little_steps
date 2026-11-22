@@ -2,6 +2,10 @@
   "@@locale": "vi",
 
   "appTitle": "Từng bước nhỏ",
+  "welcomeIntro": "Bảng lịch trình bằng hình giúp bé tự làm các việc hằng ngày, từng bước một.",
+  "welcomePickRoutines": "Chọn lịch trình để bắt đầu",
+  "welcomePickRoutinesHint": "Sau này bạn vẫn thêm, sửa hoặc xóa được trong khu vực ba mẹ.",
+  "welcomeStart": "Bắt đầu",
 
   "commonCancel": "Hủy",
   "commonSave": "Lưu",

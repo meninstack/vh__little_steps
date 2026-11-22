@@ -104,6 +104,30 @@ abstract class AppLocalizations {
   /// **'Little Steps'**
   String get appTitle;
 
+  /// No description provided for @welcomeIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'A picture routine chart that helps your child do everyday tasks, one step at a time.'**
+  String get welcomeIntro;
+
+  /// No description provided for @welcomePickRoutines.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose routines to start with'**
+  String get welcomePickRoutines;
+
+  /// No description provided for @welcomePickRoutinesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'You can add, change or remove them later in the grown-ups\' area.'**
+  String get welcomePickRoutinesHint;
+
+  /// No description provided for @welcomeStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Get started'**
+  String get welcomeStart;
+
   /// No description provided for @commonCancel.
   ///
   /// In en, this message translates to:

@@ -155,7 +155,12 @@ class _ChildHomeScreenState extends ConsumerState<ChildHomeScreen> {
                   padding: const EdgeInsets.fromLTRB(16, 10, 8, 6),
                   child: Row(
                     children: [
-                      const Expanded(child: _Brand()),
+                      // A very narrow phone has no room for the mark, the
+                      // name and the buttons; the name matters most.
+                      Expanded(
+                        child: _Brand(showMark: constraints.maxWidth >= 360),
+                      ),
+                      const SizedBox(width: 12),
                       actions,
                     ],
                   ),
@@ -174,22 +179,31 @@ class _ChildHomeScreenState extends ConsumerState<ChildHomeScreen> {
 }
 
 class _Brand extends StatelessWidget {
-  const _Brand();
+  const _Brand({this.showMark = true});
+
+  /// Whether the round star mark is drawn in front of the name.
+  final bool showMark;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
-          width: 40,
-          height: 40,
-          decoration: const BoxDecoration(
-            color: AppColors.primary,
-            shape: BoxShape.circle,
+        if (showMark) ...[
+          Container(
+            width: 40,
+            height: 40,
+            decoration: const BoxDecoration(
+              color: AppColors.primary,
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(
+              Icons.star_rounded,
+              color: Colors.white,
+              size: 28,
+            ),
           ),
-          child: const Icon(Icons.star_rounded, color: Colors.white, size: 28),
-        ),
-        const SizedBox(width: 10),
+          const SizedBox(width: 10),
+        ],
         // The name is never cut short. Where there is too little room for it,
         // on the tablet rail or a small phone, it shrinks to fit.
         Flexible(

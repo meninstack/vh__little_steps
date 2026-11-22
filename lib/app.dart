@@ -3,6 +3,7 @@ import 'package:material_ui/material_ui.dart';
 
 import 'core/theme.dart';
 import 'features/child/child_home_screen.dart';
+import 'features/welcome/welcome_screen.dart';
 import 'l10n/app_localizations.dart';
 import 'state/app_controller.dart';
 
@@ -56,7 +57,20 @@ class _LittleStepsAppState extends ConsumerState<LittleStepsApp>
       // font settings would push card names out of their tiles.
       builder: (context, child) =>
           MediaQuery.withClampedTextScaling(maxScaleFactor: 1.3, child: child!),
-      home: const ChildHomeScreen(),
+      home: const _Home(),
     );
+  }
+}
+
+/// The welcome screen on a new installation, the child's board after that.
+class _Home extends ConsumerWidget {
+  const _Home();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final welcomed = ref.watch(
+      appControllerProvider.select((data) => data.onboardingDone),
+    );
+    return welcomed ? const ChildHomeScreen() : const WelcomeScreen();
   }
 }

@@ -52,6 +52,7 @@ class AppController extends Notifier<AppData> {
         _routineFrom(routineTemplatesByKey[key]!),
     ],
     progress: DayProgress(date: today),
+    onboardingDone: false,
   );
 
   /// A new, unnamed routine holding the template's cards.
@@ -343,6 +344,24 @@ class AppController extends Notifier<AppData> {
   // ---------------------------------------------------------------------
   // Settings
   // ---------------------------------------------------------------------
+
+  /// Ends the first-run welcome with the ready-made routines the family
+  /// chose, in the order the templates are listed.
+  void finishOnboarding(Set<String> templateKeys) {
+    final existing = {
+      for (final routine in state.routines) routine.presetKey: routine,
+    };
+    _commit(
+      state.copyWith(
+        routines: [
+          for (final template in routineTemplates)
+            if (templateKeys.contains(template.presetKey))
+              existing[template.presetKey] ?? _routineFrom(template),
+        ],
+        onboardingDone: true,
+      ),
+    );
+  }
 
   /// Pass null to follow the device language.
   void setLocale(String? localeCode) {
